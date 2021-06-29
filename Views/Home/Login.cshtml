@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <br />
+        <div class="col-md-12 col-sm-12">
+            <!-- SECTION TITLE -->
+            <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
+                <h2>Login Here</h2>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <p>Not Registered then: <a href="Register.html">Register Now</a> </p>
+        </div>
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <div class="form-group">
+                <label class="control-label col-md-4" for="email">Email/UserName: </label>
+                <div class="col-md-8">
+                    <input type="email" class="form-control" id="txtUsername" placeholder="Email" name="email" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label col-md-4" for="email">Password: </label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-12 text-center">
+            <div class="form-group">
+                <div>
+                    <input id="btnLogin" class="btn btn-success text-center" type="button" value="Login" />
+                </div>
+            </div>
+        </div>
+        <!--Bootstrap alert to display error message if the login fails-->
+        <div id="divError" class="alert alert-danger collapse">
+            <a id="linkClose" href="#" class="close">&times;</a>
+            <div id="divErrorText"></div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        $('#btnLogin').click(function () {
+            $.ajax({
+                // Post username, password & the grant type to /token
+                url: '/token',
+                method: 'POST',
+                contentType: 'application/json',
+                data: {
+                    username: $('#txtUsername').val(),
+                    password: $('#txtPassword').val(),
+                    grant_type: 'password'
+                },
+                // When the request completes successfully, save the
+                // access token in the browser session storage and
+                // redirect the user to page.
+                success: function (response) {
+                    sessionStorage.setItem("accessToken", response.access_token);
+                    Session.setItem("loggedUser", response.username)
+                    var url = '@Url.Action("CheckRole", "Home")';
+                    window.location.href = url;
+                },
+                // Display errors if any in the Bootstrap alert <div>
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                    }
+            });
+        });
+    });
+</script>
+

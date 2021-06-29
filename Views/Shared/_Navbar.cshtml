@@ -1,0 +1,47 @@
+﻿<!-- MENU -->
+<section class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+
+            <!-- lOGO TEXT HERE -->
+            <a href="~/" class="navbar-brand">Dr. Flight Mode</a>
+        </div>
+
+        <!-- MENU LINKS -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+
+                @*<li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="OurVission">Our Vision</a></li>
+                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
+                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
+
+                @*Link Text,Action Method, Controler Name*@
+
+
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                <li>@Html.ActionLink("Career with us", "Career", "Home")</li>
+                <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" href="~/Account/Login.html" data-toggle="dropdown"> Login/Register <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>@Html.ActionLink("Register", "Register", "Home", null, new { id = "item 1" })</li>
+                        <li>@Html.ActionLink("Login", "Login", "Home", null, new { id = "item 2" })</li>
+                    </ul>
+                </li>
+                @*<li><a class="appointment-btn" asp-area="" asp-controller="Home" asp-action="Appointment">Make an appointment</a></li>*@
+
+                <li class="appointment-btn">@Html.ActionLink("Make an Appointment", "Appointment", "Home")</li>
+
+            </ul>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <title>@ViewData["Title"] - DrFlightMode</title>
+
+    @* CSS Files *@
+    <link rel="stylesheet" href="~/Content/SiteCss/css/bootstrap.min.css" \>
+    <link rel="stylesheet" href="~/Content/SiteCss/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/SiteCss/css/animate.css">
+    <link rel="stylesheet" href="~/Content/SiteCss/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/SiteCss/css/owl.theme.default.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/Content/SiteCss/css/tooplate-style.css">
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    <!-- PRE LOADER -->
+    @*<section class="preloader">
+            <div class="spinner">
+
+                <span class="spinner-rotate"></span>
+
+            </div>
+        </section>*@
+
+    @*Header*@
+    @Html.Partial("_PageHeader")
+    @*Menu*@
+    @Html.Partial("_Navbar")
+
+    @* Main Content *@
+    <section id="home" class="slider" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+
+    @*Footer*@
+    @Html.Partial("_PageFooter")
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+    <!-- SCRIPTS -->
+    <script src="~/Content/SiteCss/js/jquery.js"></script>
+    <script src="~/Content/SiteCss/js/bootstrap.min.js"></script>
+    <script src="~/Content/SiteCss/js/jquery.sticky.js"></script>
+    <script src="~/Content/SiteCss/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/SiteCss/js/wow.min.js"></script>
+    <script src="~/Content/SiteCss/js/smoothscroll.js"></script>
+    <script src="~/Content/SiteCss/js/owl.carousel.min.js"></script>
+    <script src="~/Content/SiteCss/js/custom.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
