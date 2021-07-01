@@ -18,9 +18,9 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @*<li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="OurVission">Our Vision</a></li>
-                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
-                    <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="OurVission">Our Vision</a></li>
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
 
                 @*Link Text,Action Method, Controler Name*@
 
@@ -29,15 +29,9 @@
                 <li>@Html.ActionLink("About Us", "About", "Home")</li>
                 <li>@Html.ActionLink("Career with us", "Career", "Home")</li>
                 <li><a href="#contact" class="smoothScroll">Contact</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" aria-expanded="false" href="~/Account/Login.html" data-toggle="dropdown"> Login/Register <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Register", "Register", "Home", null, new { id = "item 1" })</li>
-                        <li>@Html.ActionLink("Login", "Login", "Home", null, new { id = "item 2" })</li>
-                    </ul>
-                </li>
+                <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                <li>@Html.ActionLink("Login", "Login", "Home")</li>
                 @*<li><a class="appointment-btn" asp-area="" asp-controller="Home" asp-action="Appointment">Make an appointment</a></li>*@
-
                 <li class="appointment-btn">@Html.ActionLink("Make an Appointment", "Appointment", "Home")</li>
 
             </ul>

@@ -40,19 +40,15 @@ namespace FlightMode.Controllers
             return View();
         }
 
-        public ActionResult CheckRole()
+        public string CheckRole(string value)
         {
-            var uname = Session["loggedUser"].ToString();
+            ViewBag.StoreItem = value;
 
+            return value;
+            //Url.Action("Index", "Admin/default", null);
 
-            if (Roles.IsUserInRole(uname, "Admin"))
-            {
-                return RedirectToAction("Index", "Admin/Default");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            //return View();
+            
         }
     }
 }
