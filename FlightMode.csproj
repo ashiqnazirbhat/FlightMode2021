@@ -2312,6 +2312,8 @@
     </Content>
     <Content Include="Areas\Patient\Views\Default\Logout.cshtml" />
     <Content Include="Areas\Patient\Views\Default\HealthFeed.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\Feedback.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\UserProfile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
