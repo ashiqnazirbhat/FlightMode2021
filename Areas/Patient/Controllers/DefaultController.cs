@@ -13,5 +13,13 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            return View();
+        }
+        public ActionResult HealthFeed()
+        {
+            return View();
+        }
     }
 }

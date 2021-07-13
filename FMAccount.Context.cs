@@ -12,6 +12,8 @@ namespace FlightMode
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FMAccountEntities : DbContext
     {
@@ -29,5 +31,14 @@ namespace FlightMode
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+    
+        public virtual ObjectResult<string> GetRoleInfo(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetRoleInfo", emailParameter);
+        }
     }
 }

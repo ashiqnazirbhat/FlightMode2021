@@ -16,7 +16,7 @@
     <AssemblyName>FlightMode</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44316</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
@@ -212,7 +212,6 @@
     <Compile Include="Areas\Specialist\SpecialistAreaRegistration.cs" />
     <Compile Include="Controllers\api\AccountController.cs" />
     <Compile Include="Controllers\api\RoleController.cs" />
-    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\ValuesController.cs" />
     <Compile Include="FMAccount.Context.cs">
@@ -2201,13 +2200,6 @@
     <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\SiteCss\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="FMAccount.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FMAccount.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="FMAccount.edmx.diagram">
-      <DependentUpon>FMAccount.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Patient\Views\web.config" />
     <Content Include="Areas\Specialist\Views\web.config" />
     <Content Include="Areas\Physician\Views\web.config" />
@@ -2311,6 +2303,15 @@
     <Content Include="Areas\Admin\Views\Shared\_Sidebar.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Default\Login.cshtml" />
+    <EntityDeploy Include="FMAccount.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FMAccount.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="FMAccount.edmx.diagram">
+      <DependentUpon>FMAccount.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Patient\Views\Default\Logout.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\HealthFeed.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2415,7 +2416,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60913</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60913/</IISUrl>
+          <IISUrl>http://localhost/FlightMode</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

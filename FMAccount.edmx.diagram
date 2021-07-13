@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1717095f92fb431b9a50be0c4d76ff02" Name="Diagram1">
-        <EntityTypeShape EntityType="FlightMode2021Model.Role" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlightMode2021Model.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlightMode2021Model.UserClaim" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlightMode2021Model.UserLogin" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <AssociationConnector Association="FlightMode2021Model.FK_UserClaim_User_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="FlightMode2021Model.FK_UserLogin_User_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="FlightMode2021Model.UserRole" ManuallyRouted="false" />
+      <Diagram DiagramId="86360381590748b4a45d7372740d6e34" Name="Diagram1">
+        <EntityTypeShape EntityType="FMAccountModel.Role" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMAccountModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMAccountModel.UserClaim" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMAccountModel.UserLogin" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="FMAccountModel.FK_UserClaim_User_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FMAccountModel.FK_UserLogin_User_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FMAccountModel.UserRole" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

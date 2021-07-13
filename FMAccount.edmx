@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FlightMode2021Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FMAccountModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -120,7 +120,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FlightMode2021ModelStoreContainer">
+        <Function Name="GetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="FMAccountModelStoreContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="FlightMode2021" store:Type="Tables" />
@@ -143,10 +146,11 @@
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FlightMode2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FMAccountModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -253,15 +257,18 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <FunctionImport Name="GetRoleInfo" ReturnType="Collection(String)">
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FlightMode2021ModelStoreContainer" CdmEntityContainer="FMAccountEntities">
+        <EntityContainerMapping StorageEntityContainer="FMAccountModelStoreContainer" CdmEntityContainer="FMAccountEntities">
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="FlightMode2021Model.Role">
+            <EntityTypeMapping TypeName="FMAccountModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -269,9 +276,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="FlightMode2021Model.User">
+            <EntityTypeMapping TypeName="FMAccountModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
@@ -279,6 +285,7 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="AltNumber" ColumnName="AltNumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -295,7 +302,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserClaims">
-            <EntityTypeMapping TypeName="FlightMode2021Model.UserClaim">
+            <EntityTypeMapping TypeName="FMAccountModel.UserClaim">
               <MappingFragment StoreEntitySet="UserClaim">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -305,7 +312,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserLogins">
-            <EntityTypeMapping TypeName="FlightMode2021Model.UserLogin">
+            <EntityTypeMapping TypeName="FMAccountModel.UserLogin">
               <MappingFragment StoreEntitySet="UserLogin">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -313,7 +320,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UserRole" TypeName="FlightMode2021Model.UserRole" StoreEntitySet="UserRole">
+          <AssociationSetMapping Name="UserRole" TypeName="FMAccountModel.UserRole" StoreEntitySet="UserRole">
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -321,6 +328,7 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetRoleInfo" FunctionName="FMAccountModel.Store.GetRole" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

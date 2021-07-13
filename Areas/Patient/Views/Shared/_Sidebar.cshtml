@@ -34,12 +34,10 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <p class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Dashboard
-                    </p>
-                </a>
+                    @Html.ActionLink("Dashboard", "Index", "Default")
+                </p>
             </li>
             @* Communications *@
             <li class="nav-item">
@@ -121,67 +119,39 @@
             </li>
             @* To Do *@
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <p class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        To-Do
-                    </p>
-                </a>
+                    @Html.ActionLink("To Do", "Todo", "Default")
+                </p>
             </li>
 
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <p class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Profile
-                    </p>
-                </a>
+                    @Html.ActionLink("Profile", "Profile", "Default")
+                </p>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <p class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Settings
-                    </p>
-                </a>
+                    @Html.ActionLink("Health Feed", "HealthFeed", "Default")
+                </p>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <p class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Consult
-                    </p>
-                </a>
+                    @Html.ActionLink("Feedback", "Feedback", "Default")
+                </p>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Health Feed
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Feedback
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Logout
-                    </p>
-                </a>
+                <p class="nav-link">
+                    <i class="nav-icon fas fa-book"></i> 
+                    @Html.ActionLink("Logout", "Logout", "Default")
+                </p>
             </li>
 
         </ul>
