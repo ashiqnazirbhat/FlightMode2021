@@ -41,79 +41,79 @@
             </li>
             @* Communications *@
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <div  class="nav-link">
                     <i class="nav-icon far fa-envelope"></i>
                     <p>
                         Communications
                         <i class="fas fa-angle-left right"></i>
                     </p>
-                </a>
+                </div>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>New Messages</p>
-                        </a>
+                            @Html.ActionLink("New Messages", "NewMessages", "Default")
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Archieved Messages</p>
-                        </a>
+                            @Html.ActionLink("Archieved Messages", "ArchievedMessages", "Default")
+                        </div>
                     </li>
                 </ul>
             </li>
             @* Patients *@
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <div class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                     <p>
                         Appointments
                         <i class="fas fa-angle-left right"></i>
                     </p>
-                </a>
+                </div>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>New Appointment</p>
-                        </a>
+                            @Html.ActionLink("New Appointment", "NewAppointment", "Default")
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/examples/profile.html" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Follow-Up</p>
-                        </a>
+                            @Html.ActionLink("Follow Up", "FollowUp", "Default")
+                        </div>
                     </li>
                 </ul>
             </li>
             @* Reports *@
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <div class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                     <p>
                         Reports
                         <i class="fas fa-angle-left right"></i>
                     </p>
-                </a>
+                </div>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="pages/examples/login.html" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Request Reports</p>
-                        </a>
+                            @Html.ActionLink("Request Reports", "RequestReports", "Default")
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/examples/register.html" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Updated Reports</p>
-                        </a>
+                            @Html.ActionLink("Updated Reports", "UpdatedReports", "Default")
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/examples/forgot-password.html" class="nav-link">
+                        <div class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Archieved Reports</p>
-                        </a>
+                            @Html.ActionLink("Archeved Reports", "ArchevedReports", "Default")
+                        </div>
                     </li>
                 </ul>
             </li>
@@ -124,7 +124,6 @@
                     @Html.ActionLink("To Do", "Todo", "Default")
                 </p>
             </li>
-
 
             <li class="nav-item">
                 <p class="nav-link">

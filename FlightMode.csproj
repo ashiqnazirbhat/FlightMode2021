@@ -2314,6 +2314,11 @@
     <Content Include="Areas\Patient\Views\Default\HealthFeed.cshtml" />
     <Content Include="Areas\Patient\Views\Default\Feedback.cshtml" />
     <Content Include="Areas\Patient\Views\Default\UserProfile.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\NewAppointment.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\FollowUp.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\EditPersonalInfo.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\EditAddressInfo.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\ChangePassword.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

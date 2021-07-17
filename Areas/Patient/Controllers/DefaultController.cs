@@ -29,5 +29,17 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
+        public ActionResult NewAppointment()
+        {
+            return View();
+        }
+        public ActionResult FollowUp()
+        {
+            return View();
+        }
+        public ActionResult EditPersonalInfo()
+        {
+            return View();
+        }
     }
 }
