@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "~/Areas/Patient/Views/Shared/_Layout.cshtml";
 }
+
+@* Style For Coming Soon Element *@
 <style>
     .bgimg {
         background-image: url('../../../../Content/SiteCss/images/CommingSoon.jpg');
@@ -22,12 +24,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Health Feed</h1>
+                <h1 class="m-0">New Messages</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Health Feed</li>
+                    <li class="breadcrumb-item active">New Messages</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -81,4 +83,5 @@
                 document.getElementById("demo").innerHTML = "EXPIRED";
             }
         }, 1000);
-</script>
+ </script>
+

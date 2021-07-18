@@ -16,7 +16,7 @@
     <AssemblyName>FlightMode</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44316</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
@@ -196,6 +196,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -214,6 +217,18 @@
     <Compile Include="Controllers\api\RoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\ValuesController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EduDetail.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpDeatil.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
     <Compile Include="FMAccount.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,8 +244,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FMAccount.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FMDataAccess.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDataAccess.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMDataAccess.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMDataAccess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDataAccess.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HealthParameter.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HealthReport.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202106281024348_t.cs" />
     <Compile Include="Migrations\202106281024348_t.Designer.cs">
@@ -248,21 +284,27 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PhysicianDetail.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Role.cs">
-      <DependentUpon>FMAccount.tt</DependentUpon>
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Specialization.cs">
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="User.cs">
-      <DependentUpon>FMAccount.tt</DependentUpon>
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="UserClaim.cs">
-      <DependentUpon>FMAccount.tt</DependentUpon>
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="UserLogin.cs">
-      <DependentUpon>FMAccount.tt</DependentUpon>
+      <DependentUpon>FMDataAccess.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2162,6 +2204,7 @@
     <Content Include="Content\SiteCss\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\SiteCss\images\about-bg.jpg" />
     <Content Include="Content\SiteCss\images\appointment-image.jpg" />
+    <Content Include="Content\SiteCss\images\CommingSoon.jpg" />
     <Content Include="Content\SiteCss\images\news-image.jpg" />
     <Content Include="Content\SiteCss\images\news-image1.jpg" />
     <Content Include="Content\SiteCss\images\news-image2.jpg" />
@@ -2190,6 +2233,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FMAccount.edmx</DependentUpon>
       <LastGenOutput>FMAccount.cs</LastGenOutput>
+    </Content>
+    <Content Include="FMDataAccess.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FMDataAccess.edmx</DependentUpon>
+      <LastGenOutput>FMDataAccess.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FMDataAccess.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FMDataAccess.edmx</DependentUpon>
+      <LastGenOutput>FMDataAccess.cs</LastGenOutput>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2319,6 +2372,16 @@
     <Content Include="Areas\Patient\Views\Default\EditPersonalInfo.cshtml" />
     <Content Include="Areas\Patient\Views\Default\EditAddressInfo.cshtml" />
     <Content Include="Areas\Patient\Views\Default\ChangePassword.cshtml" />
+    <EntityDeploy Include="FMDataAccess.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FMDataAccess.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="FMDataAccess.edmx.diagram">
+      <DependentUpon>FMDataAccess.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Patient\Views\Default\NewMessages.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\Todo.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\ArchievedMessages.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2423,7 +2486,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60913</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/FlightMode</IISUrl>
+          <IISUrl>http://localhost:60913/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

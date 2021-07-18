@@ -41,5 +41,17 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
+        public ActionResult NewMessages()
+        {
+            return View();
+        }
+        public ActionResult ArchievedMessages()
+        {
+            return View();
+        }
+        public ActionResult Todo()
+        {
+            return View();
+        }
     }
 }
