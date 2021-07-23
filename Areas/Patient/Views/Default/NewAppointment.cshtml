@@ -1,7 +1,140 @@
 ﻿@{
     Layout = "~/Areas/Patient/Views/Shared/_Layout.cshtml";
 }
-<p>
-    Appointment 
-</p>
-
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">New Appointment</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">New Appointment</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Book an Appointment</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
+                        </div>
+                        <select class="form-control" id="txtRegAs">
+                            <option>Select</option>
+                            <option>Comments</option>
+                            <option>Suggestions</option>
+                            <option>Questions</option>
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Phone Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Department</span>
+                        </div>
+                        <select class="form-control" id="txtRegAs">
+                            <option>Select</option>
+                            <option>Comments</option>
+                            <option>Suggestions</option>
+                            <option>Questions</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Speciality</span>
+                        </div>
+                        <select class="form-control" id="txtRegAs">
+                            <option>Select</option>
+                            <option>Comments</option>
+                            <option>Suggestions</option>
+                            <option>Questions</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-3">
+                    <label class="control-label col-md-4" for="email">Short Description</label>
+                    <div class="col-md-12">
+                        <textarea class="col-md-12" draggable="true">
+        
+                                   </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-3">
+                    <label class="control-label col-md-4" for="email">Description</label>
+                    <div class="col-md-12">
+                        <textarea class="col-md-12" draggable="true">
+        
+                                   </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

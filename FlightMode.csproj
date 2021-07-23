@@ -2382,6 +2382,8 @@
     <Content Include="Areas\Patient\Views\Default\NewMessages.cshtml" />
     <Content Include="Areas\Patient\Views\Default\Todo.cshtml" />
     <Content Include="Areas\Patient\Views\Default\ArchievedMessages.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\UpdatedReports.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\ArchievedReports.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

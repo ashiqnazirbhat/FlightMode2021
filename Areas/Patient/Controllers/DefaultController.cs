@@ -13,7 +13,43 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
-        public ActionResult Logout()
+        //Communication
+        public ActionResult NewMessages()
+        {
+            return View();
+        }
+        public ActionResult ArchievedMessages()
+        {
+            return View();
+        }
+        //Appointments
+        public ActionResult NewAppointment()
+        {
+            return View();
+        }
+        public ActionResult FollowUp()
+        {
+            return View();
+        }
+
+        //Reports 
+        public ActionResult RequestReports()
+        {
+            return View();
+        }
+        public ActionResult UpdatedReports()
+        {
+            return View();
+        }
+        public ActionResult ArchievedReports()
+        {
+            return View();
+        }
+        public ActionResult Todo()
+        {
+            return View();
+        }
+        public ActionResult UserProfile()
         {
             return View();
         }
@@ -25,31 +61,18 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
-        public ActionResult UserProfile()
+        public ActionResult Logout()
         {
             return View();
         }
-        public ActionResult NewAppointment()
-        {
-            return View();
-        }
-        public ActionResult FollowUp()
-        {
-            return View();
-        }
+
+        //Updations
         public ActionResult EditPersonalInfo()
         {
             return View();
         }
-        public ActionResult NewMessages()
-        {
-            return View();
-        }
-        public ActionResult ArchievedMessages()
-        {
-            return View();
-        }
-        public ActionResult Todo()
+        
+        public ActionResult EditAddressInfo()
         {
             return View();
         }
