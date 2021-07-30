@@ -76,5 +76,9 @@ namespace FlightMode.Areas.Patient.Controllers
         {
             return View();
         }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
     }
 }

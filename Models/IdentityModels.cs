@@ -11,12 +11,7 @@ namespace FlightMode.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public string MName { get; set; }
-        public string Gender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string AltNumber { get; set; }
+        public string Status { get; set; }
         public DateTime? LastLogin { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -45,14 +40,6 @@ namespace FlightMode.Models
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
-
-            modelBuilder.Entity<ApplicationUser>()
-                .Property(e => e.FName)
-                .HasMaxLength(250);
-
-            modelBuilder.Entity<ApplicationUser>()
-                .Property(e => e.LName)
-                .HasMaxLength(250);
         }
         public static ApplicationDbContext Create()
         {

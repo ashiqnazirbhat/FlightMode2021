@@ -328,14 +328,13 @@ namespace FlightMode.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser() {UserName = model.Email, Email = model.Email};
+            var user = new ApplicationUser() {UserName = model.Email, Email = model.Email, Status= "New", LastLogin=model.LastLogin};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-            
-            
+
             if (result.Succeeded)
             {
-                var result1 = UserManager.AddToRole(user.Id, "Patient");
+                result = UserManager.AddToRole(user.Id, "Patient");
             }
 
             if (!result.Succeeded)
@@ -354,14 +353,14 @@ namespace FlightMode.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Status = "New", LastLogin = model.LastLogin };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
 
             if (result.Succeeded)
             {
-                var result1 = UserManager.AddToRole(user.Id, "Physician");
+                result = UserManager.AddToRole(user.Id, "Physician");
             }
 
             if (!result.Succeeded)
@@ -380,14 +379,14 @@ namespace FlightMode.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Status = "New", LastLogin = model.LastLogin };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
 
             if (result.Succeeded)
             {
-                var result1 = UserManager.AddToRole(user.Id, "Specialist");
+                result = UserManager.AddToRole(user.Id, "Specialist");
             }
 
             if (!result.Succeeded)

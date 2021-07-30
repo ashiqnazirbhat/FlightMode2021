@@ -4,19 +4,30 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FlightMode.Models;
 
 namespace FlightMode.Controllers.api
 {
     public class RoleController : ApiController
     {
-        public String Get(string email)
+        public IHttpActionResult Get(string id)
         {
-            using (FMAccountEntities entities = new FMAccountEntities())
+            try
             {
-                string a = entities.GetRoleInfo(email).Single();
-                return a;
-
-
+                FMDataAccess entities = new FMDataAccess();
+                var a = entities.GetRoleInfo(id).DefaultIfEmpty().Single();
+                if (a != null)
+                {
+                    return Ok(a);
+                }
+                else
+                {
+                    return Ok("No Such User Exists");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Areas/Patient/Views/Shared/_Layout.cshtml";
 }
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -28,7 +29,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtName" placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -39,11 +40,11 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
                         </div>
-                        <select class="form-control" id="txtRegAs">
+                        <select class="form-control" id="txtGender">
                             <option>Select</option>
-                            <option>Comments</option>
-                            <option>Suggestions</option>
-                            <option>Questions</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
                         </select>
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -55,7 +56,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtAge" placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -66,7 +67,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Phone Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtPhone" placeholder="Phone Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Alternate Number</span>
+                        </div>
+                        <input type="text" class="form-control" id="txtAltPhone" placeholder="Alter Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -79,7 +91,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtEmail" placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -90,22 +102,20 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Department</span>
                         </div>
-                        <select class="form-control" id="txtRegAs">
+                        <select class="form-control" id="txtDept">
                             <option>Select</option>
-                            <option>Comments</option>
-                            <option>Suggestions</option>
-                            <option>Questions</option>
+                            <option>General Surgery</option>
+                            <option>Nephrology</option>
+                            <option>Neurology</option>
                         </select>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Speciality</span>
                         </div>
-                        <select class="form-control" id="txtRegAs">
+                        <select class="form-control" id="txtSpeciality">
                             <option>Select</option>
-                            <option>Comments</option>
-                            <option>Suggestions</option>
-                            <option>Questions</option>
+                            <option>Emergency medicine</option>
                         </select>
                     </div>
                 </div>
@@ -114,9 +124,7 @@
                 <div class="input-group mb-3">
                     <label class="control-label col-md-4" for="email">Short Description</label>
                     <div class="col-md-12">
-                        <textarea class="col-md-12" draggable="true">
-        
-                                   </textarea>
+                        <textarea class="col-md-12" id="txtSDesc" draggable="true"></textarea>
                     </div>
                 </div>
             </div>
@@ -124,17 +132,62 @@
                 <div class="input-group mb-3">
                     <label class="control-label col-md-4" for="email">Description</label>
                     <div class="col-md-12">
-                        <textarea class="col-md-12" draggable="true">
-        
-                                   </textarea>
+                        <textarea class="col-md-12" id="txtDesc" draggable="true"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary">Book Now</button>
+                    <button type="button" id="btnBookNow" class="btn btn-primary">Book Now</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+<script type="text/javascript">
+    function insertappoint() {
+
+        var t = new Date($.now());
+        timestamp = moment(t).format('llll');
+
+        var insert = {};
+
+        insert.Name = $("#txtName").val();
+        insert.Gender = $("#txtGender").val();
+        insert.Age = $("#txtAge").val();
+        insert.Phone = $("#txtPhone").val();
+        insert.AltNumber = $("#txtAltPhone").val();
+        insert.Email = $("#txtEmail").val();
+        insert.ShortDesc = $("#txtSDesc").val();
+        insert.Desc = $("#txtDesc").val();
+        insert.CreatedBy = 'Admin';
+        insert.CreatedDate = timestamp;
+        insert.ModifiedBy = 'Admin';
+        insert.ModifiedDate = timestamp;
+
+        $.ajax({
+            url: "/api/Appointment/Insert",
+            method: "post",
+            type: "Post",
+            contentType: "Application/json",
+            data: JSON.stringify(insert),
+            dataType: "json",
+            success: function (response) {
+                alert(response)
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        $("#btnBookNow").click(function (e) {
+            insertappoint();
+            e.preventDefault();
+        });
+    });
+</script>

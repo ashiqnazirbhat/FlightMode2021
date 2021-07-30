@@ -105,3 +105,55 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+@* Script to Add Data to Web Api's *@
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        //Close the bootstrap alert
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        var t = new Date($.now());
+        timestamp = moment(t).format('llll');
+
+        // Save the new user details
+        $('#btnUpdate').click(function () {
+            $.ajax({
+                url: '/api/User/EditProfile',
+                method: 'Put',
+                data: {
+                    FName: $('#txtFName').val(),
+                    LName: $('#txtLName').val(),
+                    MName: $('#txtMName').val(),
+                    Gender: $('#txtGender').val(),
+                    DateOfBirth: $('#txtDOB').val(),
+                    PhoneNumber: $('#txtPhone').val(),
+                    AltNumber: $('#txtAltPhone').val(),
+                    Status: 'Updated',
+                    CreatedBy: localStorage.getItem('userName'),
+                    CreatedDate: timestamp,
+                    ModifiedBy: localStorage.getItem('userName'),
+                    ModifiedDate: timestamp,
+                    UserName: localStorage.getItem('userName')
+                },
+                success: function () {
+                    var url = '/Patient/Default/Index';
+                    window.location.href = url;
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

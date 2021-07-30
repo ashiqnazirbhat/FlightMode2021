@@ -2,105 +2,111 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <!--This table contains the fields that we want to capture to register a new user-->
-            <br />
-            <div class="col-md-12 col-sm-12">
-                <!-- SECTION TITLE -->
-                <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
-                    <h2>Register with us</h2>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 text-center">
-                <p>Already Registered then: <a href="Register.html">Login</a> </p>
-            </div>
-            <div class="form-horizontal">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <div class="form-group">
-                        <label class="control-label col-md-5" for="usr">Register As:</label>
-                        <div class="col-md-4">
-                            <select class="form-control" id="txtRegAs">
-                                <option>Select</option>
-                                <option>Patient</option>
-                                <option>Physician</option>
-                                <option>Specialist</option>
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-                </div>
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="email">Email: </label>
-                        <div class="col-md-4">
-                            <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="email" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="email">Password: </label>
-                        <div class="col-md-4">
-                            <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4 text-wrap" for="email">Confirm Password: </label>
-                        <div class="col-md-4">
-                            <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" />
-                        </div>
+    <form id="RegisterForm">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!--This table contains the fields that we want to capture to register a new user-->
+                <br />
+                <div class="col-md-12 col-sm-12">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <h2>Register with us</h2>
                     </div>
                 </div>
-                <div class="col-md-12 text-center">
-                    <div class="form-group">
-                        <div>
-                            <input id="btnRegister" class="btn btn-success text-center" type="button" value="Register" />
-                        </div>
-                    </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <p>Already Registered then: <a href="Register.html">Login</a> </p>
                 </div>
-                <!--Bootstrap modal dialog that shows up when regsitration is successful-->
-                <div class="modal fade" tabindex="-1" id="successModal"
-                     data-keyboard="false" data-backdrop="static">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">
-                                    &times;
-                                </button>
-                                <h4 class="modal-title">Success</h4>
+                <div class="form-horizontal">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <div class="form-group">
+                            <label class="control-label col-md-5" for="usr">Register As:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="txtRegAs" required>
+                                    <option>Select</option>
+                                    <option>Patient</option>
+                                    <option>Physician</option>
+                                    <option>Specialist</option>
+                                </select>
                             </div>
-                            <div class="modal-body">
-                                <form>
-                                    <h2 class="modal-title">Registration Successful!</h2>
-                                </form>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="email">Email: </label>
+                            <div class="col-md-4">
+                                <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="email" required aria-describedby="email-format"/>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success"
-                                        data-dismiss="modal">
-                                    Close
-                                </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="password">Password: </label>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" required aria-describedby="password-format" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 text-wrap" for="email">Confirm Password: </label>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" required />
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Bootstrap alert to display any validation errors-->
-                <div id="divError" class="alert alert-danger collapse">
+                    <div class="col-md-12 text-center">
+                        <div class="form-group">
+                            <div>
+                                <input id="btnRegister" class="btn btn-success text-center" type="submit" value="Register" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bootstrap modal dialog that shows up when regsitration is successful-->
+                    <div class="modal fade" tabindex="-1" id="successModal"
+                         data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title">Success</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <h2 class="modal-title">Registration Successful!</h2>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bootstrap alert to display any validation errors-->
+                    <div id="divError" class="alert alert-danger collapse">
 
 
-                    <a id="linkClose" href="#" class="close">&times;</a>
-                    <div id="divErrorText"></div>
+                        <a id="linkClose" href="#" class="close">&times;</a>
+                        <div id="divErrorText"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
 
 @* Script to Add Data to Web Api's *@
 <script type="text/javascript">
     $(document).ready(function () {
-
+        
         //Close the bootstrap alert
         $('#linkClose').click(function () {
             $('#divError').hide('fade');
@@ -108,6 +114,10 @@
 
         // Save the new user details
         $('#btnRegister').click(function () {
+            $("RegisterForm").validate();
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
             $.ajax({
                 url: '/api/account/register/' + $('#txtRegAs').val(),
                 method: 'POST',
@@ -115,6 +125,7 @@
                     Email: $('#txtEmail').val(),
                     Password: $('#txtPassword').val(),
                     ConfirmPassword: $('#txtConfirmPassword').val(),
+                    LastLogin: timestamp,
                 },
                 success: function () {
                     var url = '/Home/Login';

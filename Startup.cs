@@ -39,7 +39,7 @@ namespace FlightMode
                 //Here we create a Admin super user who will maintain the website                   
 
                 var user = new ApplicationUser();
-                user.UserName = "ashiq";
+                user.UserName = "bhatashiq4@gmail.com";
                 user.Email = "bhatashiq4@gmail.com";
 
                 string userPWD = "Editor@007";

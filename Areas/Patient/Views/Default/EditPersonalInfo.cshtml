@@ -32,7 +32,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">First Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="First name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtFName" placeholder="First name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -44,7 +44,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Last name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtLName" placeholder="Last name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -55,7 +55,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Middle Name</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Middle name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtMName" placeholder="Middle name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -66,29 +66,25 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Gender" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
+                        <select class="form-control" id="txtGender">
+                            <option>Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                            <option>Prefer Not to Say</option>
+                        </select>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Date of Birth</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="DOB" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
+                        <input type="date" id="txtDOB" name="date" value="" class="form-control">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Phone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtPhone" placeholder="Phone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -99,7 +95,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Alternate Number</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Alt Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" id="txtAltPhone" placeholder="Alt Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -110,10 +106,59 @@
             </div>
             <div class="row">
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-primary">Update</button>
+                    <button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+@* Script to Add Data to Web Api's *@
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        //Close the bootstrap alert
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+        var t = new Date($.now());
+        timestamp = moment(t).format('llll');
+        // Save the new user details
+        $('#btnUpdate').click(function () {
+            $.ajax({
+                url: '/api/User/EditProfile',
+                method: 'Put',
+                data: {
+                    FName: $('#txtFName').val(),
+                    LName: $('#txtLName').val(),
+                    MName: $('#txtMName').val(),
+                    Gender: $('#txtGender').val(),
+                    DateOfBirth: $('#txtDOB').val(),
+                    PhoneNumber: $('#txtPhone').val(),
+                    AltNumber: $('#txtAltPhone').val(),
+                    Status: 'Updated',
+                    CreatedBy: localStorage.getItem('userName'),
+                    CreatedDate: timestamp,
+                    ModifiedBy: localStorage.getItem('userName'),
+                    ModifiedDate: timestamp,
+                    UserName: localStorage.getItem('userName')
+                },
+                success: function () {
+                    var url = '/Patient/Default/Index';
+                    window.location.href = url;
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>
