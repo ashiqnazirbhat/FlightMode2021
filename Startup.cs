@@ -79,6 +79,13 @@ namespace FlightMode
                 roleManager.Create(role);
 
             }
+            if (!roleManager.RoleExists("TeleService"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "TeleService";
+                roleManager.Create(role);
+
+            }
         }
     }
 }

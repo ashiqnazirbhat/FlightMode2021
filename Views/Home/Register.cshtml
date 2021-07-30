@@ -33,21 +33,21 @@
                     </div>
                     <div class="col-md-8 col-md-offset-2 text-center">
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="email">Email: </label>
+                            <label class="control-label col-md-4">Email: </label>
                             <div class="col-md-4">
-                                <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="email" required aria-describedby="email-format"/>
+                                <input class="form-control" id="txtEmail" placeholder="Email" name="email" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="password">Password: </label>
+                            <label class="control-label col-md-4">Password: </label>
                             <div class="col-md-4">
-                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" required aria-describedby="password-format" />
+                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password"  />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4 text-wrap" for="email">Confirm Password: </label>
+                            <label class="control-label col-md-4 text-wrap" >Confirm Password: </label>
                             <div class="col-md-4">
-                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" required />
+                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" />
                             </div>
                         </div>
                     </div>
@@ -97,16 +97,17 @@
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/moment-with-locales.min.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
+
+
 
 @* Script to Add Data to Web Api's *@
 <script type="text/javascript">
     $(document).ready(function () {
-        
+
         //Close the bootstrap alert
         $('#linkClose').click(function () {
             $('#divError').hide('fade');
@@ -114,7 +115,38 @@
 
         // Save the new user details
         $('#btnRegister').click(function () {
-            $("RegisterForm").validate();
+
+            $("#RegisterForm").validate({
+                rules: {
+                    txtEmail: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 5
+                    },
+                    txtPassword: {
+                        required: true,
+                    },
+                    txtConfirmPassword: {
+                        required: true,
+                        equalto: "#txtPassword"
+                    }
+                },
+                messages: {
+                    txtEmail: {
+                        required: "The Name field is required.",
+                        minlength: "The name must be at least 2 characters.",
+                        maxlength: "The name must be less than 5 characters."
+                    },
+                    txtPassword: {
+                        required: "Password is required",
+                    },
+                    txtConfirmPassword: {
+                        required: "Is Required",
+                        equalto: "Must be Same as Password"
+                    }
+                }
+            });
+
             var t = new Date($.now());
             timestamp = moment(t).format('llll');
 

@@ -196,6 +196,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\TeleService\Controllers\DefaultController.cs" />
     <Compile Include="Areas\TeleService\TeleServiceAreaRegistration.cs" />
     <Compile Include="Controllers\api\AppointmentController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -2348,6 +2349,15 @@
       <DependentUpon>DataAccess.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\TeleService\Views\web.config" />
+    <Content Include="Areas\TeleService\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\TeleService\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\TeleService\Views\Shared\_Navbar.cshtml" />
+    <Content Include="Areas\TeleService\Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Areas\TeleService\Views\Default\Index.cshtml" />
+    <Content Include="Areas\TeleService\Views\Default\AllAppointments.cshtml" />
+    <Content Include="Areas\TeleService\Views\Default\EditApppointment.cshtml" />
+    <Content Include="Areas\TeleService\Views\Default\NewAppointment.cshtml" />
+    <Content Include="Areas\TeleService\Views\Default\SearchAppointment.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2391,9 +2401,7 @@
     <Folder Include="Areas\Patient\Data\" />
     <Folder Include="Areas\Physician\Data\" />
     <Folder Include="Areas\Specialist\Data\" />
-    <Folder Include="Areas\TeleService\Controllers\" />
     <Folder Include="Areas\TeleService\Data\" />
-    <Folder Include="Areas\TeleService\Views\Shared\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
