@@ -1,9 +1,16 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TeleService | Dashboard</title>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,6 +32,7 @@
     <link rel="stylesheet" href="~/Areas/css/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/Areas/css/plugins/summernote/summernote-bs4.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -51,22 +59,19 @@
         @*Footer*@
         @Html.Partial("_Footer")
     </div>
-    <!-- ./wrapper -->
-    <!-- jQuery -->
-    <script src="~/Areas/css/plugins/jquery/jquery.min.js"></script>
+    
     <!-- jQuery UI 1.11.4 -->
     <script src="~/Areas/css/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    @*<script>$.widget.bridge('uibutton', $.ui.button)</script>*@
     <!-- Bootstrap 4 -->
     <script src="~/Areas/css/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="~/Areas/css/plugins/chart.js/Chart.min.js"></script>
+    @*<script src="~/Areas/css/plugins/chart.js/Chart.min.js"></script>*@
     <!-- Sparkline -->
-    <script src="~/Areas/css/plugins/sparklines/sparkline.js"></script>
     <!-- JQVMap -->
-    <script src="~/Areas/css/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="~/Areas/css/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!--<script src="~/Areas/css/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Areas/css/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>-->
     <!-- jQuery Knob Chart -->
     <script src="~/Areas/css/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
@@ -83,6 +88,6 @@
     <!-- AdminLTE for demo purposes -->
     <script src="~/Areas/css/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/Areas/css/dist/js/pages/dashboard.js"></script>
+    @*<script src="~/Areas/css/dist/js/pages/dashboard.js"></script>*@
 </body>
 </html>

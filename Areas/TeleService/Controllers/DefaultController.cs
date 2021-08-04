@@ -21,7 +21,7 @@ namespace FlightMode.Areas.TeleService.Controllers
         {
             return View();
         }
-        public ActionResult SearchAppointment()
+        public ActionResult ViewAppointment()
         {
             return View();
         }

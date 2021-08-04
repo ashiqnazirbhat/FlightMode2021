@@ -8,7 +8,7 @@ using FlightMode.Models;
 
 namespace FlightMode.Controllers.api
 {
-    public class RoleController : ApiController
+    public class RoleIdController : ApiController
     {
         public IHttpActionResult Get(string id)
         {

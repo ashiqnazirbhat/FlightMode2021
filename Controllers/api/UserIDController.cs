@@ -8,7 +8,7 @@ using FlightMode.Models;
 
 namespace FlightMode.Controllers.api
 {
-    public class UserIDController : ApiController
+    public class UserIdController : ApiController
     {
         // GET api/<controller>/5
         public string Get(string id)

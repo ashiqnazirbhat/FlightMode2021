@@ -23,132 +23,128 @@
             <h5>Book an Appointment</h5>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+            <from id="AppointForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtName" placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
                         </div>
-                        <input type="text" class="form-control" id="txtName" placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
+                            </div>
+                            <select class="form-control" id="txtGender">
+                                <option>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAge" placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtPhone" placeholder="Phone Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Alternate Number</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAltPhone" placeholder="Alter Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
-                        </div>
-                        <select class="form-control" id="txtGender">
-                            <option>Select</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                        </select>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtEmail" placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
-                        </div>
-                        <input type="text" class="form-control" id="txtAge" placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Speciality</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
-                        </div>
-                        <input type="text" class="form-control" id="txtPhone" placeholder="Phone Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Alternate Number</span>
-                        </div>
-                        <input type="text" class="form-control" id="txtAltPhone" placeholder="Alter Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                            <select class="form-control" id="txtSpeciality">
+                                <option>Select</option>
+                                <option>General Physician</option>
+                                <option>Medicine</option>
+                                <option>Dental</option>
+                                <option>Surgery</option>
+                                <option>Psychiatry</option>
+                                <option>Obstetrics & Gyanecology</option>
+                                <option>Pediatrics</option>
+                                <option>Opthalmology</option>
+                                <option>ENT</option>
+                                <option>Psychological Counsellor</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="row">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
-                        </div>
-                        <input type="text" class="form-control" id="txtEmail" placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                        <label class="control-label col-md-4" for="email">Short Description</label>
+                        <div class="col-md-12">
+                            <textarea class="col-md-12" id="txtSDesc" draggable="true"></textarea>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Department</span>
+                        <label class="control-label col-md-4" for="email">Description</label>
+                        <div class="col-md-12">
+                            <textarea class="col-md-12" id="txtDesc" draggable="true"></textarea>
                         </div>
-                        <select class="form-control" id="txtDept">
-                            <option>Select</option>
-                            <option>General Surgery</option>
-                            <option>Nephrology</option>
-                            <option>Neurology</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Speciality</span>
-                        </div>
-                        <select class="form-control" id="txtSpeciality">
-                            <option>Select</option>
-                            <option>Emergency medicine</option>
-                        </select>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-group mb-3">
-                    <label class="control-label col-md-4" for="email">Short Description</label>
-                    <div class="col-md-12">
-                        <textarea class="col-md-12" id="txtSDesc" draggable="true"></textarea>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" id="btnBookNow" class="btn btn-primary">Book Now</button>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-group mb-3">
-                    <label class="control-label col-md-4" for="email">Description</label>
-                    <div class="col-md-12">
-                        <textarea class="col-md-12" id="txtDesc" draggable="true"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="button" id="btnBookNow" class="btn btn-primary">Book Now</button>
-                </div>
-            </div>
+            </from>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/moment-with-locales.min.js"></script>
 
 <script type="text/javascript">
     function insertappoint() {
@@ -186,6 +182,7 @@
 
     $(document).ready(function () {
         $("#btnBookNow").click(function (e) {
+            $("#AppointForm").validate();
             insertappoint();
             e.preventDefault();
         });

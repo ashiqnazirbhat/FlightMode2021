@@ -18,13 +18,208 @@
 </div>
 
 <div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
-            <h5>New Appointment</h5>
+    <form id="AppointForm" action="#" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h5>New Appointment</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtName" required  placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Gender</span>
+                            </div>
+                            <select class="form-control" id="txtGender" required>
+                                <option>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAge" required placeholder="Age" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtPhone" required placeholder="Phone Number" maxlength="10" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Alternate Number</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAltPhone" required placeholder="Alternate Number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtEmail" required placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Speciality</span>
+                            </div>
+                            <select class="form-control" id="txtSpeciality" required>
+                                <option>Select</option>
+                                <option>General Physician</option>
+                                <option>Medicine</option>
+                                <option>Dental</option>
+                                <option>Surgery</option>
+                                <option>Psychiatry</option>
+                                <option>Obstetrics & Gyanecology</option>
+                                <option>Pediatrics</option>
+                                <option>Opthalmology</option>
+                                <option>ENT</option>
+                                <option>Psychological Counsellor</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <label class="control-label col-md-4" for="email">Short Description</label>
+                        <div class="col-md-12">
+                            <textarea class="col-md-12" id="txtSDesc" required draggable="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <label class="control-label col-md-4" for="email">Description</label>
+                        <div class="col-md-12">
+                            <textarea class="col-md-12" id="txtDesc" required draggable="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" id="btnBookNow" class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-
-        </div>
-    </div>
+    </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+ <script type="text/javascript">
+        function insertappoint() {
+
+        var t = new Date($.now());
+        timestamp = moment(t).format('llll');
+
+        var insert = { };
+
+        insert.Name = $("#txtName").val();
+        insert.Gender = $("#txtGender").val();
+        insert.Age = $("#txtAge").val();
+        insert.Phone = $("#txtPhone").val();
+        insert.AltNumber = $("#txtAltPhone").val();
+        insert.Email = $("#txtEmail").val();
+        insert.ShortDesc = $("#txtSDesc").val();
+        insert.Desc = $("#txtDesc").val();
+        insert.CreatedBy = 'Admin';
+        insert.CreatedDate = timestamp;
+        insert.ModifiedBy = 'Admin';
+        insert.ModifiedDate = timestamp;
+
+        $.ajax({
+            url: "/api/Appointment/Insert",
+            method: "post",
+            type: "Post",
+            contentType: "Application/json",
+            data: JSON.stringify(insert),
+            dataType: "json",
+            success: function (response) {
+            alert(response)
+            },
+        });
+        }
+
+     $(document).ready(function () {
+         var form = document.getElementById("AppointForm");
+            $("#btnBookNow").click(function (form) {
+                $("#AppointForm").validate({
+                    rules: {
+                        txtName: {
+                            required: true,
+                            email: true
+                        },
+                        txtGender: {
+                            required: true
+                        },
+                        txtAge: {
+                            required: true
+                        },
+                        txtPhone: {
+                            required: true
+                        },
+                        txtAltPhone: {
+                            required: true
+                        },
+                        txtEmail: {
+                            required: true 
+                        },
+                        txtSDesc: {
+                            required: true
+                        },
+                        txtDesc: {
+                            required: true
+                        }
+                    },
+                    submitHandler: function (form) {
+                        insertappoint();
+                    }
+                });
+            });
+    });
+</script>
 

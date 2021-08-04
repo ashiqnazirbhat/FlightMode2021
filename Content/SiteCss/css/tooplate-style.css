@@ -261,11 +261,11 @@ a:focus {
     animation: spinner .9s linear infinite;
 }
 
-@-webkit-@keyframes spinner {
+/*@-webkit-@keyframes spinner {
     to {
         transform: rotate(360deg);
     }
-}
+}*/
 
 @keyframes spinner {
     to {
@@ -493,7 +493,6 @@ header span i {
     padding-top: 150px;
     padding-bottom: 150px;
 }
-
 .profile img,
 .profile figcaption {
     display: inline-block;

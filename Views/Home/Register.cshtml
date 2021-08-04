@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <form id="RegisterForm">
+    <form id="RegisterForm" action="#" method="post">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <!--This table contains the fields that we want to capture to register a new user-->
@@ -33,21 +33,21 @@
                     </div>
                     <div class="col-md-8 col-md-offset-2 text-center">
                         <div class="form-group">
-                            <label class="control-label col-md-4">Email: </label>
+                            <label class="control-label col-md-4" for="email">Email: </label>
                             <div class="col-md-4">
-                                <input class="form-control" id="txtEmail" placeholder="Email" name="email" />
+                                <input class="form-control" id="txtEmail" placeholder="Email" name="email" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Password: </label>
+                            <label class="control-label col-md-4" for="password">Password: </label>
                             <div class="col-md-4">
-                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password"  />
+                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4 text-wrap" >Confirm Password: </label>
+                            <label class="control-label col-md-4 text-wrap" for="password">Confirm Password: </label>
                             <div class="col-md-4">
-                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" />
+                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="cpassword" required />
                             </div>
                         </div>
                     </div>
@@ -96,9 +96,8 @@
     </form>
 </div>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/moment-with-locales.min.js"></script>
 
@@ -108,66 +107,55 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        var form = document.getElementById("LoginForm");
+
         //Close the bootstrap alert
         $('#linkClose').click(function () {
             $('#divError').hide('fade');
         });
 
         // Save the new user details
-        $('#btnRegister').click(function () {
+        $('#btnRegister').click(function (form) {
 
             $("#RegisterForm").validate({
                 rules: {
                     txtEmail: {
                         required: true,
-                        minlength: 2,
-                        maxlength: 5
+                        email: true
                     },
                     txtPassword: {
-                        required: true,
+                        required: true
                     },
-                    txtConfirmPassword: {
-                        required: true,
-                        equalto: "#txtPassword"
+                    txtConfirmPassowrd: {
+                        required: true
                     }
                 },
-                messages: {
-                    txtEmail: {
-                        required: "The Name field is required.",
-                        minlength: "The name must be at least 2 characters.",
-                        maxlength: "The name must be less than 5 characters."
-                    },
-                    txtPassword: {
-                        required: "Password is required",
-                    },
-                    txtConfirmPassword: {
-                        required: "Is Required",
-                        equalto: "Must be Same as Password"
-                    }
+                submitHandler: function (form) {
+
+                    var t = new Date($.now());
+                    timestamp = moment(t).format('llll');
+
+                    $.ajax({
+                        url: '/api/account/register/' + $('#txtRegAs').val(),
+                        method: 'POST',
+                        data: {
+                            Email: $('#txtEmail').val(),
+                            Password: $('#txtPassword').val(),
+                            ConfirmPassword: $('#txtConfirmPassword').val(),
+                            LastLogin: timestamp,
+                        },
+                        success: function () {
+                            var url = '/Home/Login';
+                            window.location.href = url;
+                        },
+                        error: function (jqXHR) {
+                            $('#divErrorText').text(jqXHR.responseText);
+                            $('#divError').show('fade');
+                        }
+                    });
                 }
             });
-
-            var t = new Date($.now());
-            timestamp = moment(t).format('llll');
-
-            $.ajax({
-                url: '/api/account/register/' + $('#txtRegAs').val(),
-                method: 'POST',
-                data: {
-                    Email: $('#txtEmail').val(),
-                    Password: $('#txtPassword').val(),
-                    ConfirmPassword: $('#txtConfirmPassword').val(),
-                    LastLogin: timestamp,
-                },
-                success: function () {
-                    var url = '/Home/Login';
-                    window.location.href = url;
-                },
-                error: function (jqXHR) {
-                    $('#divErrorText').text(jqXHR.responseText);
-                    $('#divError').show('fade');
-                }
-            });
+        
         });
     });
 </script>

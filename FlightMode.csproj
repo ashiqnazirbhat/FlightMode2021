@@ -52,6 +52,12 @@
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.OData.5.8.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.10.8\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
@@ -73,12 +79,21 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Spatial.5.8.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.OData.Entity, Version=2.3.6189.41810, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.OData.EntityBuilder.2.3.2\lib\net45\System.Web.OData.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -214,11 +229,12 @@
     <Compile Include="Areas\Specialist\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Specialist\SpecialistAreaRegistration.cs" />
     <Compile Include="Controllers\api\AccountController.cs" />
-    <Compile Include="Controllers\api\RoleController.cs" />
+    <Compile Include="Controllers\api\RoleIdController.cs" />
+    <Compile Include="Controllers\api\RolesController.cs" />
+    <Compile Include="Controllers\api\SpecialitiesController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
-    <Compile Include="Controllers\api\UserIDController.cs" />
+    <Compile Include="Controllers\api\UserIdController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\api\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,9 +265,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataAccess.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>DataAccess.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EduDetail.cs">
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
@@ -271,7 +284,7 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Specialization.cs">
+    <Compile Include="Models\Speciality.cs">
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -2172,10 +2185,6 @@
     <Content Include="Areas\css\plugins\uplot\uPlot.iife.js" />
     <Content Include="Areas\css\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Areas\css\plugins\uplot\uPlot.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\SiteCss\css\animate.css" />
     <Content Include="Content\SiteCss\css\bootstrap.min.css" />
     <Content Include="Content\SiteCss\css\font-awesome.min.css" />
@@ -2203,6 +2212,7 @@
     <Content Include="Content\SiteCss\js\jquery.sticky.js" />
     <Content Include="Content\SiteCss\js\owl.carousel.min.js" />
     <Content Include="Content\SiteCss\js\smoothscroll.js" />
+    <Content Include="Content\SiteCss\js\smoothscroll2.js" />
     <Content Include="Content\SiteCss\js\wow.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2217,13 +2227,6 @@
       <DependentUpon>DataAccess.edmx</DependentUpon>
       <LastGenOutput>DataAccess.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\SiteCss\fonts\FontAwesome.otf" />
     <Content Include="Areas\Patient\Views\web.config" />
     <Content Include="Areas\Specialist\Views\web.config" />
     <Content Include="Areas\Physician\Views\web.config" />
@@ -2357,20 +2360,24 @@
     <Content Include="Areas\TeleService\Views\Default\AllAppointments.cshtml" />
     <Content Include="Areas\TeleService\Views\Default\EditApppointment.cshtml" />
     <Content Include="Areas\TeleService\Views\Default\NewAppointment.cshtml" />
-    <Content Include="Areas\TeleService\Views\Default\SearchAppointment.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Areas\TeleService\Views\Default\ViewAppointment.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddSpeciality.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ViewSpeciality.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditSpeciality.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AllSpeciality.cshtml" />
+    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\SiteCss\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\SiteCss\fonts\FontAwesome.otf" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\notify.js" />
+    <Content Include="Scripts\notify.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2378,7 +2385,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -2417,21 +2423,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css.map" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

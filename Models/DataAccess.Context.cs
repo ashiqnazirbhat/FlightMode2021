@@ -30,17 +30,16 @@ namespace FlightMode.Models
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
         public virtual DbSet<ExpDeatil> ExpDeatils { get; set; }
         public virtual DbSet<HealthParameter> HealthParameters { get; set; }
         public virtual DbSet<HealthReport> HealthReports { get; set; }
         public virtual DbSet<PhysicianDetail> PhysicianDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Specialization> Specializations { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<Speciality> Specialities { get; set; }
     
         public virtual ObjectResult<string> GetRoleInfo(string email)
         {

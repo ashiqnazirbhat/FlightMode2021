@@ -2,140 +2,162 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <div class="col-md-10 col-md-offset-1">
-        <br />
-        <div class="col-md-12 col-sm-12">
-            <!-- SECTION TITLE -->
-            <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
-                <h2>Login Here</h2>
+    <form id="LoginForm" method="post">
+        <div class="col-md-10 col-md-offset-1">
+            <br />
+            <div class="col-md-12 col-sm-12">
+                <!-- SECTION TITLE -->
+                <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
+                    <h2>Login Here</h2>
+                </div>
             </div>
-        </div>
 
-        <div class="form-horizontal">
-            <div class="col-md-12 text-center">
-                <p>Not Registered then: <a href="Register.html">Register Now</a> </p>
-            </div>
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <div class="form-group">
-                    <label class="control-label col-md-5" for="usr">Login As:</label>
-                    <div class="col-md-4">
-                        <select class="form-control" id="txtRegAs">
-                            <option>Select</option>
-                            <option>Patient</option>
-                            <option>Physician</option>
-                            <option>Specialist</option>
-                            <option>Employee</option>
-                        </select>
+            <div class="form-horizontal">
+                <div class="col-md-12 text-center">
+                    <p>Not Registered then: <a href="Register.html">Register Now</a> </p>
+                </div>
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="form-group">
+                        <label class="control-label col-md-5" for="usr">Login As:</label>
+                        <div class="col-md-4">
+                            <select class="form-control" id="txtRegAs">
+                                <option>Select</option>
+                                <option>Patient</option>
+                                <option>Physician</option>
+                                <option>Specialist</option>
+                                <option>TeleService</option>
+                                <option>Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="email">Email/UserName: </label>
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" id="txtUsername" placeholder="Email" name="email" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="email">Password: </label>
+                        <div class="col-md-8">
+                            <input type="password" class="form-control" id="txtPassword"  placeholder="Password" name="password" required />
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4" for="email">Email/UserName: </label>
-                    <div class="col-md-8">
-                        <input type="email" class="form-control" id="txtUsername" placeholder="Email" name="email" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4" for="email">Password: </label>
-                    <div class="col-md-8">
-                        <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="password" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 text-center">
-                <div class="form-group">
-                    <div>
-                        <input id="btnLogin" class="btn btn-success text-center" type="button" value="Login" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Bootstrap modal dialog that shows up when regsitration is successful-->
-        <div class="modal fade" tabindex="-1" id="IssueModel"
-             data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">Select Login Type</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <h3 class="modal-title"> Please Select Login As</h3>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success"
-                                data-dismiss="modal">
-                            Close
-                        </button>
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <div>
+                            <input id="btnLogin" class="btn btn-success text-center" type="submit" value="Login" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!--Bootstrap modal dialog that shows up when regsitration is successful-->
+            <div class="modal fade" tabindex="-1" id="IssueModel"
+                 data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                &times;
+                            </button>
+                            <h4 class="modal-title">Select Login Type</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <h3 class="modal-title"> Please Select Login As</h3>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!--Bootstrap alert to display error message if the login fails-->
-        <div id="divError" class="alert alert-danger collapse">
-            <a id="linkClose" href="#" class="close">&times;</a>
-            <div id="divErrorText"></div>
+            <!--Bootstrap alert to display error message if the login fails-->
+            <div id="divError" class="alert alert-danger collapse">
+                <a id="linkClose" href="#" class="close">&times;</a>
+                <div id="divErrorText"></div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var form = document.getElementById("LoginForm");
+
         $('#linkClose').click(function () {
             $('#divError').hide('fade');
         });
 
-        $('#btnLogin').click(function () {
-            $.ajax({
-                // Post username, password & the grant type to /token
-                url: '/token',
-                method: 'POST',
-                contentType: 'application/json',
-                data: {
-                    username: $('#txtUsername').val(),
-                    password: $('#txtPassword').val(),
-                    grant_type: 'password'
-                },
-                // When the request completes successfully, save the
-                // access token in the browser session storage and
-                // redirect the user to page.
-                success: function (response) {
-                    localStorage.setItem("accessToken", response.access_token);
-                    localStorage.setItem("userName", response.userName);
-                    var Role = $('#txtRegAs').val()
-                    if (Role === 'Select') {
-                        $('#IssueModel').modal('show');
-                    }
-                    else if (Role === 'Patient') {
-                        var url = '@Url.Action("Index", "Patient/Default")';
-                        window.location.href = url;
-                    } else if (Role === 'Physician') {
-                        var url = '@Url.Action("Index", "Physician/Default")';
-                        window.location.href = url;
-                    } else if (Role === 'Specialist') {
-                        var url = '@Url.Action("Index", "Specialist/Default")';
-                        window.location.href = url;
-                    } else if (Role === 'Employee') {
-                        var url = '@Url.Action("Index", "Admin/Default")';
-                        window.location.href = url;
+        $('#btnLogin').click(function (form) {
+            $("#LoginForm").validate({
+                rules: {
+                    txtUsername: {
+                        required: true,
+                        email: true
+                    },
+                    txtPassword: {
+                        required: true
                     }
                 },
-                // Display errors if any in the Bootstrap alert <div>
-                error: function (jqXHR) {
-                    $('#divErrorText').text(jqXHR.responseText);
-                    $('#divError').show('fade');
+                submitHandler: function (form) {
+                    $.ajax({
+                        // Post username, password & the grant type to /token
+                        url: '/token',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: {
+                            username: $('#txtUsername').val(),
+                            password: $('#txtPassword').val(),
+                            grant_type: 'password'
+                        },
+                        // When the request completes successfully, save the
+                        // access token in the browser session storage and
+                        // redirect the user to page.
+                        success: function (response) {
+                            localStorage.setItem("accessToken", response.access_token);
+                            localStorage.setItem("userName", response.userName);
+                            var Role = $('#txtRegAs').val()
+                            if (Role === 'Select') {
+                                $('#IssueModel').modal('show');
+                            }
+                            else if (Role === 'Patient') {
+                                var url = '@Url.Action("Index", "Patient/Default")';
+                                window.location.href = url;
+                            } else if (Role === 'Physician') {
+                                var url = '@Url.Action("Index", "Physician/Default")';
+                                window.location.href = url;
+                            } else if (Role === 'Specialist') {
+                                var url = '@Url.Action("Index", "Specialist/Default")';
+                                window.location.href = url;
+                            } else if (Role === 'Employee') {
+                                var url = '@Url.Action("Index", "Admin/Default")';
+                                window.location.href = url;
+                            } else if(Role === 'TeleService') {
+                                var url = '@Url.Action("Index", "TeleService/Default")';
+                                window.location.href = url;
+                            }
+                        },
+                        // Display errors if any in the Bootstrap alert <div>
+                        error: function (jqXHR) {
+                            $('#divErrorText').text(jqXHR.responseText);
+                            $('#divError').show('fade');
+                        }
+                    });
+                    return false;
                 }
             });
         });
     });
 </script>
-

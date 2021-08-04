@@ -51,47 +51,47 @@ $(function () {
   $('.knob').knob()
 
   // jvectormap data
-  var visitorsData = {
-    US: 398, // USA
-    SA: 400, // Saudi Arabia
-    CA: 1000, // Canada
-    DE: 500, // Germany
-    FR: 760, // France
-    CN: 300, // China
-    AU: 700, // Australia
-    BR: 600, // Brazil
-    IN: 800, // India
-    GB: 320, // Great Britain
-    RU: 3000 // Russia
-  }
+  //var visitorsData = {
+  //  US: 398, // USA
+  //  SA: 400, // Saudi Arabia
+  //  CA: 1000, // Canada
+  //  DE: 500, // Germany
+  //  FR: 760, // France
+  //  CN: 300, // China
+  //  AU: 700, // Australia
+  //  BR: 600, // Brazil
+  //  IN: 800, // India
+  //  GB: 320, // Great Britain
+  //  RU: 3000 // Russia
+  //}
   // World map by jvectormap
-  $('#world-map').vectorMap({
-    map: 'usa_en',
-    backgroundColor: 'transparent',
-    regionStyle: {
-      initial: {
-        fill: 'rgba(255, 255, 255, 0.7)',
-        'fill-opacity': 1,
-        stroke: 'rgba(0,0,0,.2)',
-        'stroke-width': 1,
-        'stroke-opacity': 1
-      }
-    },
-    series: {
-      regions: [{
-        values: visitorsData,
-        scale: ['#ffffff', '#0154ad'],
-        normalizeFunction: 'polynomial'
-      }]
-    },
-    onRegionLabelShow: function (e, el, code) {
-      if (typeof visitorsData[code] !== 'undefined') {
-        el.html(el.html() + ': ' + visitorsData[code] + ' new visitors')
-      }
-    }
-  })
+  //$('#world-map').vectorMap({
+  //  map: 'usa_en',
+  //  backgroundColor: 'transparent',
+  //  regionStyle: {
+  //    initial: {
+  //      fill: 'rgba(255, 255, 255, 0.7)',
+  //      'fill-opacity': 1,
+  //      stroke: 'rgba(0,0,0,.2)',
+  //      'stroke-width': 1,
+  //      'stroke-opacity': 1
+  //    }
+  //  },
+  //  series: {
+  //    regions: [{
+  //      values: visitorsData,
+  //      scale: ['#ffffff', '#0154ad'],
+  //      normalizeFunction: 'polynomial'
+  //    }]
+  //  },
+  //  onRegionLabelShow: function (e, el, code) {
+  //    if (typeof visitorsData[code] !== 'undefined') {
+  //      el.html(el.html() + ': ' + visitorsData[code] + ' new visitors')
+  //    }
+  //  }
+  //})
 
-  // Sparkline charts
+  //// Sparkline charts
   var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
   var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
   var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
@@ -113,7 +113,7 @@ $(function () {
 
   /* Chart.js Charts */
   // Sales chart
-  var salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d')
+  /*var salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d')*/
   // $('#revenue-chart').get(0).getContext('2d');
 
   var salesChartData = {

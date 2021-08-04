@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h5 class="m-0"> Add Speciality </h5>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add Speciality</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="container-fluid">
+    <form id="frmSpeciality" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h5>Add New Speciality</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-bold" id="inputGroup-sizing-default">Name</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtName" required placeholder="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <div class="input-group-append">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="control-label col-md-4" for="email">Description</label>
+                            <div class="col-md-12">
+                                <textarea class="col-md-12" id="txtDesc" required minlength="100" draggable="true"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" id="btnAddSpeciality" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+<script type="text/javascript">
+   
+    $(document).ready(function () {
+
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        $("#btnAddSpeciality").click(function () {
+
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
+            var insert = {};
+
+            insert.Name = $("#txtName").val();
+            insert.Description = $("#txtDesc").val();
+
+            $.ajax({
+                url: "api/Speciality/Insert",
+                method: "post",
+                type: "Post",
+                contentType: "Application/json",
+                data: JSON.stringify(insert),
+                dataType: "json",
+
+                success: function (response) {
+                    alert(response)
+                },
+
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

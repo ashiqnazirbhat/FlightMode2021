@@ -5,6 +5,12 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.OData.Builder;
+using System.Web.OData;
+using System.Web.Http.OData.Extensions;
+using System.Web.Http.OData.Routing;
+using FlightMode.Models;
+
 
 namespace FlightMode
 {
@@ -20,11 +26,26 @@ namespace FlightMode
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // 
+            config.AddODataQueryFilter();
+
+            // New code:
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Speciality>("Specialities");
+            config.Routes.MapODataServiceRoute(
+                routeName: "ODataRoute",
+                routePrefix: "api",
+                model: builder.GetEdmModel());
+
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            
         }
     }
 }

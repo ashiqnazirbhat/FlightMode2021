@@ -31,6 +31,10 @@ namespace FlightMode.Controllers
         {
             return View();
         }
+        public ActionResult Try()
+        {
+            return View();
+        }
         public ActionResult Register()
         {
             return View();

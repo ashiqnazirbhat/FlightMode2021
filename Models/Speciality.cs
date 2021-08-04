@@ -12,11 +12,13 @@ namespace FlightMode.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Department
+    public partial class Speciality
     {
-        public long DeptId { get; set; }
-        public string DeptName { get; set; }
+        public long SPId { get; set; }
+        public string SPName { get; set; }
         public string Description { get; set; }
+        public string Status { get; set; }
+        public string Remark { get; set; }
         public string CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }

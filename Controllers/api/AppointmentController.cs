@@ -11,6 +11,32 @@ namespace FlightMode.Controllers.api
     [RoutePrefix("api/Appointment")]
     public class AppointmentController : ApiController
     {
+        [HttpGet]
+        public IHttpActionResult AllAppointments()
+        {
+            FMDataAccess entities = new FMDataAccess();
+            List<Appointment> res = entities.Appointments.ToList();
+            return Ok(res);
+        }
+
+        [HttpGet]
+        [Route("AppId/{id}")]
+        public IHttpActionResult AppId(int id)
+        {
+            FMDataAccess entities = new FMDataAccess();
+
+            var entity = entities.Appointments.Find(id);
+
+            if (entity != null)
+            {
+                return Ok(entity);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         [HttpPost]
         // POST api/<controller>
         public IHttpActionResult Insert([FromBody] Appointment appoint)

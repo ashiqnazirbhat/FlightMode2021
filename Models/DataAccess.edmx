@@ -51,18 +51,6 @@
           <Property Name="ModifiedBy" Type="varchar" MaxLength="45" />
           <Property Name="ModifiedDate" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="Departments">
-          <Key>
-            <PropertyRef Name="DeptId" />
-          </Key>
-          <Property Name="DeptId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeptName" Type="varchar" MaxLength="150" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
-          <Property Name="CreateDate" Type="varchar" MaxLength="50" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
-          <Property Name="ModifiedDate" Type="varchar" MaxLength="50" />
-          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="EduDetails">
           <Key>
             <PropertyRef Name="EduDetailsId" />
@@ -143,13 +131,15 @@
           <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="Specialization">
+        <EntityType Name="Speciality">
           <Key>
             <PropertyRef Name="SPId" />
           </Key>
           <Property Name="SPId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SPName" Type="varchar" MaxLength="150" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="varchar" MaxLength="45" />
+          <Property Name="Remark" Type="varchar" MaxLength="150" />
           <Property Name="CreateDate" Type="varchar" MaxLength="50" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedDate" Type="varchar" MaxLength="50" />
@@ -277,14 +267,13 @@
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="FlightMode2021" store:Type="Tables" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="EduDetails" EntityType="Self.EduDetails" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="ExpDeatils" EntityType="Self.ExpDeatils" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="HealthParameters" EntityType="Self.HealthParameters" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="HealthReports" EntityType="Self.HealthReports" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="PhysicianDetails" EntityType="Self.PhysicianDetails" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="FlightMode2021" store:Type="Tables" />
-          <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="FlightMode2021" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="FlightMode2021" store:Type="Tables" />
@@ -355,18 +344,6 @@
           <Property Name="CreatedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Department">
-          <Key>
-            <PropertyRef Name="DeptId" />
-          </Key>
-          <Property Name="DeptId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DeptName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="EduDetail">
           <Key>
@@ -448,18 +425,6 @@
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.UserRole" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Specialization">
-          <Key>
-            <PropertyRef Name="SPId" />
-          </Key>
-          <Property Name="SPId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SPName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -550,14 +515,12 @@
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Appointments" EntityType="Self.Appointment" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="EduDetails" EntityType="Self.EduDetail" />
           <EntitySet Name="ExpDeatils" EntityType="Self.ExpDeatil" />
           <EntitySet Name="HealthParameters" EntityType="Self.HealthParameter" />
           <EntitySet Name="HealthReports" EntityType="Self.HealthReport" />
           <EntitySet Name="PhysicianDetails" EntityType="Self.PhysicianDetail" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Specializations" EntityType="Self.Specialization" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaim" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
@@ -579,7 +542,22 @@
           <FunctionImport Name="GetID" ReturnType="Collection(String)">
           <Parameter Name="UName" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Specialities" EntityType="FMDataAccess2021.Speciality" />
         </EntityContainer>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="SPId" />
+          </Key>
+          <Property Name="SPId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SPName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -632,19 +610,6 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="FMDataAccess2021.Department">
-              <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
-                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -734,19 +699,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Specializations">
-            <EntityTypeMapping TypeName="FMDataAccess2021.Specialization">
-              <MappingFragment StoreEntitySet="Specialization">
-                <ScalarProperty Name="SPId" ColumnName="SPId" />
-                <ScalarProperty Name="SPName" ColumnName="SPName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FMDataAccess2021.User">
               <MappingFragment StoreEntitySet="User">
@@ -806,6 +758,21 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="GetRoleInfo" FunctionName="FMDataAccess2021.Store.GetRole" />
           <FunctionImportMapping FunctionImportName="GetID" FunctionName="FMDataAccess2021.Store.GetUserId" />
+          <EntitySetMapping Name="Specialities">
+            <EntityTypeMapping TypeName="FMDataAccess2021.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SPName" ColumnName="SPName" />
+                <ScalarProperty Name="SPId" ColumnName="SPId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -14,7 +14,11 @@ namespace FlightMode.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Login()
+        public ActionResult AddSpeciality()
+        {
+            return View();
+        }
+        public ActionResult AllSpeciality()
         {
             return View();
         }
