@@ -10,6 +10,7 @@ namespace FlightMode.Controllers.api
 {
     public class SpecialitiesController : ApiController
     {
+        [HttpGet]
         // GET api/<controller>
         public IHttpActionResult Get()
         {
@@ -17,15 +18,30 @@ namespace FlightMode.Controllers.api
             List<Speciality> res = entities.Specialities.ToList();
             return Ok(res);
         }
-            // GET api/<controller>/5
-            public string Get(int id)
+        // GET api/<controller>/5
+        public string Get(int id)
         {
             return "value";
         }
 
+        [HttpPost]
         // POST api/<controller>
-        public void Post([FromBody] string value)
+        public IHttpActionResult Post([FromBody] Speciality Sp)
         {
+            try
+            {
+                using (FMDataAccess entities = new FMDataAccess())
+                {
+
+                    entities.Specialities.Add(Sp);
+                    entities.SaveChanges();
+                    return Ok("Details Saved");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
         // PUT api/<controller>/5

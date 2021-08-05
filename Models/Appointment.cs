@@ -23,8 +23,9 @@ namespace FlightMode.Models
         public string Email { get; set; }
         public string ShortDesc { get; set; }
         public string Desc { get; set; }
-        public Nullable<long> DeptId { get; set; }
         public Nullable<long> Speciality { get; set; }
+        public string Status { get; set; }
+        public string Remarks { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public string ModifiedBy { get; set; }

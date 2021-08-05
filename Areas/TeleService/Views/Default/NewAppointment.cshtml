@@ -47,11 +47,6 @@
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
-                                </div>
-                            </div>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -105,16 +100,6 @@
                             </div>
                             <select class="form-control" id="txtSpeciality" required>
                                 <option>Select</option>
-                                <option>General Physician</option>
-                                <option>Medicine</option>
-                                <option>Dental</option>
-                                <option>Surgery</option>
-                                <option>Psychiatry</option>
-                                <option>Obstetrics & Gyanecology</option>
-                                <option>Pediatrics</option>
-                                <option>Opthalmology</option>
-                                <option>ENT</option>
-                                <option>Psychological Counsellor</option>
                             </select>
                         </div>
                     </div>
@@ -185,8 +170,27 @@
         }
 
      $(document).ready(function () {
+         //Getting Specialities
+         $.ajax({
+
+             url: '/api/SpName',
+             method: 'Get',
+             dataType: 'json',
+
+             success: function (data) {
+                 $('txtSpeciality').append(data);
+                 $.each(data, function (key, value) {
+                     $("#txtSpeciality").append(
+
+                         "<option value=" + value + ">" + value + "</option>"
+
+                     );
+                 });
+             }
+         });
+
          var form = document.getElementById("AppointForm");
-            $("#btnBookNow").click(function (form) {
+         $("#btnBookNow").click(function (form) {
                 $("#AppointForm").validate({
                     rules: {
                         txtName: {

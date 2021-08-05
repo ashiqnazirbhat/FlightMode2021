@@ -12,7 +12,7 @@
             <img src="~/Areas/css/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Administrator</a>
+            <a href="#" id="txtUserName" class="d-block"></a>
         </div>
     </div>
 
@@ -119,6 +119,31 @@
                     </li>
                 </ul>
             </li>
+
+            @* Specialities *@
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                        Specialities
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            @Html.ActionLink("View Specialities", "AllSpeciality", "Default")
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            @Html.ActionLink("Add Specialities", "AddSpeciality", "Default")
+                        </div>
+                    </li>
+                </ul>
+            </li>
             @* To Do *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -128,7 +153,6 @@
                     </p>
                 </a>
             </li>
-
 
             <li class="nav-item">
                 <a href="#" class="nav-link">

@@ -16,6 +16,7 @@ namespace FlightMode.Models
     {
         public long ReportId { get; set; }
         public string Description { get; set; }
+        public Nullable<long> AppId { get; set; }
         public Nullable<long> HPId { get; set; }
         public string CreateDate { get; set; }
         public string CreatedBy { get; set; }

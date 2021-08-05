@@ -14,17 +14,16 @@ namespace FlightMode.Models
     
     public partial class Address
     {
-        public long id { get; set; }
+        public long AddId { get; set; }
         public string Adress1 { get; set; }
         public string Adress2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
         public Nullable<bool> IsPrimary { get; set; }
-        public string PersonId { get; set; }
-        public string CreateDate { get; set; }
         public string CreatedBy { get; set; }
-        public string ModifiedDate { get; set; }
+        public string CreateDate { get; set; }
         public string ModifiedBy { get; set; }
+        public string ModifiedDate { get; set; }
     }
 }

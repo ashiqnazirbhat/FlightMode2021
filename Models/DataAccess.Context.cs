@@ -27,7 +27,6 @@ namespace FlightMode.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
@@ -36,27 +35,32 @@ namespace FlightMode.Models
         public virtual DbSet<HealthReport> HealthReports { get; set; }
         public virtual DbSet<PhysicianDetail> PhysicianDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Speciality> Specialities { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
-        public virtual DbSet<Speciality> Specialities { get; set; }
     
-        public virtual ObjectResult<string> GetRoleInfo(string email)
+        public virtual ObjectResult<string> RoleName(string email)
         {
             var emailParameter = email != null ?
                 new ObjectParameter("email", email) :
                 new ObjectParameter("email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetRoleInfo", emailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("RoleName", emailParameter);
         }
     
-        public virtual ObjectResult<string> GetID(string uName)
+        public virtual ObjectResult<string> UserId(string uName)
         {
             var uNameParameter = uName != null ?
                 new ObjectParameter("UName", uName) :
                 new ObjectParameter("UName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetID", uNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserId", uNameParameter);
+        }
+    
+        public virtual ObjectResult<string> SPNames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SPNames");
         }
     }
 }

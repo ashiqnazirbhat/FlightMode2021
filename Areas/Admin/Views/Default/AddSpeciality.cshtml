@@ -38,7 +38,7 @@
                         <div class="input-group mb-3">
                             <label class="control-label col-md-4" for="email">Description</label>
                             <div class="col-md-12">
-                                <textarea class="col-md-12" id="txtDesc" required minlength="100" draggable="true"></textarea>
+                                <textarea class="col-md-12" id="txtDesc" required minlength="50" draggable="true"></textarea>
                             </div>
                         </div>
                     </div>
@@ -57,9 +57,10 @@
 
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/notify.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
 
 <script type="text/javascript">
-   
     $(document).ready(function () {
 
         $('#linkClose').click(function () {
@@ -72,22 +73,25 @@
             timestamp = moment(t).format('llll');
 
             var insert = {};
-
             insert.Name = $("#txtName").val();
             insert.Description = $("#txtDesc").val();
+            insert.Status = 'Active';
+            insert.Remark = '';
+            insert.CreatedBy = localStorage.getItem("userName");;
+            insert.CreatedDate = timestamp;
+            insert.ModifiedBy = localStorage.getItem("userName");;
+            insert.ModifiedDate = timestamp;
 
             $.ajax({
-                url: "api/Speciality/Insert",
+                url: "/api/Specialities",
                 method: "post",
                 type: "Post",
                 contentType: "Application/json",
                 data: JSON.stringify(insert),
                 dataType: "json",
-
                 success: function (response) {
-                    alert(response)
+                    $.notify("Speciality Added", "success");
                 },
-
                 error: function (jqXHR) {
                     $('#divErrorText').text(jqXHR.responseText);
                     $('#divError').show('fade');

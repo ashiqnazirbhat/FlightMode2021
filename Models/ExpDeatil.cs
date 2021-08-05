@@ -18,7 +18,7 @@ namespace FlightMode.Models
         public string Position { get; set; }
         public string Description { get; set; }
         public Nullable<long> AddresId { get; set; }
-        public Nullable<bool> IsOwner { get; set; }
+        public string IsOwner { get; set; }
         public Nullable<int> ExpInYears { get; set; }
         public string CreateDate { get; set; }
         public string CreatedBy { get; set; }

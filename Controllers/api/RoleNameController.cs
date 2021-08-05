@@ -8,14 +8,13 @@ using FlightMode.Models;
 
 namespace FlightMode.Controllers.api
 {
-    public class UserIdController : ApiController
+    public class RoleNameController : ApiController
     {
-        // GET api/<controller>/5
         public string Get(string id)
         {
             using (FMDataAccess entities = new FMDataAccess())
             {
-                string a = entities.UserId(id).Single();
+                string a = entities.RoleName(id).Single();
                 return a;
             }
         }

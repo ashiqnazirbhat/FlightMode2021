@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Web.OData;
+using System.Web.Http.OData.Routing;
 
 [assembly: OwinStartup(typeof(FlightMode.Startup))]
 
@@ -17,6 +19,12 @@ namespace FlightMode
         {
             ConfigureAuth(app);
             createRolesandUsers();
+
+            //app.UseMVC(routebuilder =>
+            //{
+            //    routebuilder.EnableDependencyInjection();
+            //    routebuilder.Expand().Select().Count().OrderBy().Filter;
+            //});
         }
         // In this method we will create default User roles and Admin user for login    
         private void createRolesandUsers()

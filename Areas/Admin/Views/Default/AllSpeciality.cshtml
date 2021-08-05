@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h5 class="m-0"> All Appointment </h5>
+                <h5 class="m-0"> Specialities </h5>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">All Appointmnent</li>
+                    <li class="breadcrumb-item active">All Specialities</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,36 +26,35 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        //JQuery Code to Get All Specialities
         $.ajax({
             url: '/api/Specialities',
             method: 'Get',
             dataType: 'json',
             Accept: 'application/json',
             success: function (data) {
-                if (data.length == 0) {
-                    $('#tblAppointments').empty();
-                    $('#tblAppointments').append("<b> No Data Avaliable! </b>");
-                }
-                else {
-                    $('#tblAppointments').dataTable({
+                $('#tblSpecialities').removeAttr('width').dataTable({
                         data: data,
                         'scrollY': 350,
+                        'scrollX':900,
+                        'word- wrap': 'break-word',
+                        columnDefs: [
+                            { width: 100, targets: 2 }
+                        ],
+                        'fixedColumns': 'true',
                         columns: [
 
-                            { 'data': 'AppId' },
+                            { 'data': 'SPId' },
                             { 'data': 'Name' },
-                            { 'data': 'Gender' },
-                            { 'data': 'Age' },
-                            { 'data': 'ShortDesc' },
-                            { 'data': 'CreatedBy', 'width': '100px' },
-                            { 'data': 'CreatedDate' },
-                            { 'data': 'ModifiedBy', 'width': '100px' },
+                            { 'data': 'Description'},
+                            { 'data': 'CreatedBy'},
+                            { 'data': 'CreatedDate'},
+                            { 'data': 'ModifiedBy'},
                             { 'data': 'ModifiedDate' },
                             {
-                                'data': 'AppId',
+                                'data': 'SPId',
                                 'render': function (data) {
-                                    return "<a class='btn btn-primary btn-sm mx-auto' onclick=Edit(" + data + ")>  View Details </a> <a class='btn btn-danger btn-sm' onclick=Delete(" + data + ")>  Reject Appointment </a>"
+                                    return "<a class='btn btn-primary btn-sm mx-auto' onclick=Edit(" + data + ")>  Edit </a> <a class='btn btn-danger btn-sm' onclick=Delete(" + data + ")>  Delete </a>"
                                 },
                                 'orderable': false,
                                 'width': '150px'
@@ -65,13 +64,16 @@
                             "emptyTable": "No Data Avaliable"
                         }
                     });
-                }
             }
         });
     });
     function Edit(id) {
-        var url = '/TeleService/Default/ViewAppointment?id=' + id;
+        var url = '/Admin/Default/ViewSpeciality?id=' + id;
         window.location.href = url;
+    }
+    function Delete(id) {
+
+
     }
 </script>
 
@@ -81,16 +83,14 @@
         <div class="card-header">
             <h7>All Appointment</h7>
         </div>
-        <div class="card-body" id="tblCard">
+        <div class="card-body">
             <div class="table-responsive">
-                <table class="table  table-striped table-hover mx-auto w-auto" id="tblAppointments">
-                    <thead class="mx-auto w-auto">
+                <table class="table  table-striped table-hover text-wrap"  id="tblSpecialities">
+                    <thead class="mx-auto">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Remark</th>
                             <th scope="col">Created-By</th>
                             <th scope="col">Created-Date</th>
                             <th scope="col">Updated-By</th>
@@ -98,10 +98,18 @@
                             <th scope="col">Controls</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tfoot>
                         <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Created-By</th>
+                            <th scope="col">Created-Date</th>
+                            <th scope="col">Updated-By</th>
+                            <th scope="col">Last Updated</th>
+                            <th scope="col">Controls</th>
                         </tr>
-                    </tbody>
+                    </tfoot>
                 </table>
             </div>
         </div>

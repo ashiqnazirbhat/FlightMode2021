@@ -19,13 +19,12 @@ namespace FlightMode.Models
         public string Description { get; set; }
         public string RegNo { get; set; }
         public string RegCouncil { get; set; }
-        public string RegYear { get; set; }
+        public string RegDate { get; set; }
         public string CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
-        public string PersonId { get; set; }
-        public Nullable<long> DeptId { get; set; }
+        public string UserId { get; set; }
         public Nullable<long> SPId { get; set; }
         public Nullable<long> EduId { get; set; }
         public Nullable<long> ExpId { get; set; }

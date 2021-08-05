@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="~/Areas/css/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/Areas/css/plugins/summernote/summernote-bs4.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -86,3 +93,26 @@
     <script src="~/Areas/css/dist/js/pages/dashboard.js"></script>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if (localStorage.getItem("userName") === null) {
+            var url = '/Home/Login';
+            window.location.href = url;
+        }
+        else if (localStorage.getItem("userRole") !== 'Physician') {
+            localStorage.removeItem("userName");
+            var url = '/Home/Login';
+            window.location.href = url;
+        }
+        else
+            document.getElementById("txtUserName").innerHTML = localStorage.getItem("userName");
+    });
+
+</script>

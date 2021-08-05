@@ -29,11 +29,13 @@ namespace FlightMode.Models
         public string Gender { get; set; }
         public string DateOfBirth { get; set; }
         public string AltNumber { get; set; }
+        public Nullable<long> AddId { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string Status { get; set; }
+        public string Remarks { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
