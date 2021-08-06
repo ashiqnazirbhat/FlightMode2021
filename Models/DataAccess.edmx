@@ -32,9 +32,10 @@
           <Property Name="Phone" Type="varchar" MaxLength="45" />
           <Property Name="AltNumber" Type="varchar" MaxLength="45" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="AppDate" Type="varchar" MaxLength="100" />
+          <Property Name="Speciality" Type="bigint" />
           <Property Name="ShortDesc" Type="varchar" MaxLength="255" />
           <Property Name="Desc" Type="varchar" MaxLength="255" />
-          <Property Name="Speciality" Type="bigint" />
           <Property Name="Status" Type="varchar" MaxLength="45" />
           <Property Name="Remarks" Type="varchar" MaxLength="100" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
@@ -258,6 +259,9 @@
         </Function>
         <Function Name="GetRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021" />
         <Function Name="GetSpecialities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021" />
+        <Function Name="GetSpId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
+          <Parameter Name="SpName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
           <Parameter Name="UName" Type="varchar" Mode="In" />
         </Function>
@@ -323,9 +327,10 @@
           <Property Name="Phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="AltNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AppDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Speciality" Type="Int64" />
           <Property Name="ShortDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Speciality" Type="Int64" />
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -547,6 +552,9 @@
           <Parameter Name="UName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPNames" ReturnType="Collection(String)" />
+          <FunctionImport Name="SpId" ReturnType="Collection(Int64)">
+            <Parameter Name="SpName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -574,6 +582,7 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="FMDataAccessModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="AppDate" ColumnName="AppDate" />
                 <ScalarProperty Name="AppId" ColumnName="AppId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -756,6 +765,7 @@
           <FunctionImportMapping FunctionImportName="RoleName" FunctionName="FMDataAccessModel.Store.GetRoleName" />
           <FunctionImportMapping FunctionImportName="UserId" FunctionName="FMDataAccessModel.Store.GetUserId" />
           <FunctionImportMapping FunctionImportName="SPNames" FunctionName="FMDataAccessModel.Store.GetSpecialities" />
+          <FunctionImportMapping FunctionImportName="SpId" FunctionName="FMDataAccessModel.Store.GetSpId" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

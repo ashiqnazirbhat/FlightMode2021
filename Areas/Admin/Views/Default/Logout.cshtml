@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+    localStorage.removeItem("userName");
+    var url = '/Home/Index';
+    window.location.href = url;
+</script>

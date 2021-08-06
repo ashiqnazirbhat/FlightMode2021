@@ -22,5 +22,9 @@ namespace FlightMode.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            return View();
+        }
     }
 }

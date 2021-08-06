@@ -8,9 +8,8 @@
                 <span class="icon icon-bar"></span>
                 <span class="icon icon-bar"></span>
             </button>
-
             <!-- lOGO TEXT HERE -->
-            <a href="~/" class="navbar-brand">Dr. Flight Mode</a>
+            <a href=@Url.Action("Index", "Home") class="navbar-brand">Dr. Flight Mode</a>
         </div>
 
         <!-- MENU LINKS -->
@@ -22,8 +21,6 @@
                 <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
                 <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
                 @*Link Text,Action Method, Controler Name*@
-
-
                 <li class="smoothScroll">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li class="smoothScroll">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li class="smoothScroll">@Html.ActionLink("Career with us", "Career", "Home")</li>

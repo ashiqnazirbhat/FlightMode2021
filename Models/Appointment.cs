@@ -21,9 +21,10 @@ namespace FlightMode.Models
         public string Phone { get; set; }
         public string AltNumber { get; set; }
         public string Email { get; set; }
+        public string AppDate { get; set; }
+        public Nullable<long> Speciality { get; set; }
         public string ShortDesc { get; set; }
         public string Desc { get; set; }
-        public Nullable<long> Speciality { get; set; }
         public string Status { get; set; }
         public string Remarks { get; set; }
         public string CreatedBy { get; set; }

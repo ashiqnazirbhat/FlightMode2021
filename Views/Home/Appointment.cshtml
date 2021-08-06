@@ -7,15 +7,12 @@
 <section id="appointment" data-stellar-background-ratio="3">
     <div class="container">
         <div class="row">
-
             <div class="col-md-6 col-sm-6">
                 <img src="~/Content/SiteCss/images/appointment-image.jpg" class="img-responsive" alt="">
             </div>
-
             <div class="col-md-6 col-sm-6">
                 <!-- CONTACT FORM HERE -->
                 <form id="AppointForm" role="form" method="post" action="#">
-
                     <!-- SECTION TITLE -->
                     <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
                         <h2>Make an appointment</h2>
@@ -29,8 +26,8 @@
 
                         <div class="col-md-6 col-sm-6">
                             <label for="select">Gender</label>
-                            <select class="form-control">
-                                <option>Select</option>
+                            <select class="form-control" id="txtGender" required>
+                                <option selected disabled></option>
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
@@ -39,50 +36,42 @@
                         </div>
 
                         <div class="col-md-6 col-sm-6">
-                            <label for="text">Age</label>
-                            <input type="text" class="form-control" id="txtAge" required name="age" placeholder="Your Age">
+                            <label for="number">Age</label>
+                            <input type="number" class="form-control" id="txtAge" required name="age" placeholder="Your Age">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="telephone">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" required name="phone" placeholder="Phone">
+                            <input type="tel" class="form-control" id="txtPhone" required minlength="10" maxlength="10" name="phone" placeholder="Phone">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="telephone">Alternate Number</label>
-                            <input type="tel" class="form-control" id="phone"  required name="phone" placeholder="Phone">
+                            <input type="tel" class="form-control" id="txtAltPhone"  required minlength="10" maxlength="10" name="phone" placeholder="Phone">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" required name="email" placeholder="Your Email">
+                            <input type="email" class="form-control" id="txtEmail" required name="email" placeholder="Your Email">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="date">Select Date</label>
-                            <input type="date" name="date" value="" required class="form-control">
+                            <input type="date" name="date" id="txtDated" value="" required class="form-control">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
-                            <label for="select">Select Speciality</label>
-                            <select class="form-control" id="ddlSpeciality" required>
-                                <option>Select</option>
-                                <option>General Physician</option>
-                                <option>Medicine</option>
-                                <option>Dental</option>
-                                <option>Surgery</option>
-                                <option>Psychiatry</option>
-                                <option>Obstetrics & Gyanecology</option>
-                                <option>Pediatrics</option>
-                                <option>Opthalmology</option>
-                                <option>ENT</option>
-                                <option>Psychological Counsellor</option>
+                            <label for="select">Speciality</label>
+                            <select class="form-control" id="txtSpeciality" required>
+                                <option selected disabled></option>
                             </select>
                         </div>
 
                         <div class="col-md-12 col-sm-12 text-ce">
-                            <label for="Message">Additional Message</label>
-                            <textarea class="form-control" rows="5" id="message" required name="message" placeholder="Message"></textarea>
+                            <label for="text">Subject/Medical Issue</label>
+                            <input type="text" name="text" id="txtSDesc" required class="form-control" placeholder="Your Health Condition">
+                            <label for="Message">Additional Message/Explination</label>
+                            <textarea class="form-control" rows="5" id="txtDesc" required name="message" placeholder="Breifly Explain Your Illness"></textarea>
                             <button type="submit" class="btn btn-primary mx-auto" id="btnBookNow" name="submit">Book Appointment</button>
                         </div>
                     </div>
@@ -104,37 +93,72 @@
         var t = new Date($.now());
         timestamp = moment(t).format('llll');
 
-        var insert = {};
-
-        insert.Name = $("#txtName").val();
-        insert.Gender = $("#txtGender").val();
-        insert.Age = $("#txtAge").val();
-        insert.Phone = $("#txtPhone").val();
-        insert.AltNumber = $("#txtAltPhone").val();
-        insert.Email = $("#txtEmail").val();
-        insert.ShortDesc = $("#txtSDesc").val();
-        insert.Desc = $("#txtDesc").val();
-        insert.CreatedBy = 'Admin';
-        insert.CreatedDate = timestamp;
-        insert.ModifiedBy = 'Admin';
-        insert.ModifiedDate = timestamp;
 
         $.ajax({
-            url: "/api/Appointment/Insert",
-            method: "post",
-            type: "Post",
-            contentType: "Application/json",
-            data: JSON.stringify(insert),
-            dataType: "json",
-            success: function (response) {
-                $.notify(response);
-            },
+            url: '/api/SpId/' + $("#txtSpeciality").val() + '/',
+            method: 'Get',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                SpecialityId = data;
+                var insert = {};
+                insert.Name = $("#txtName").val();
+                insert.Gender = $("#txtGender").val();
+                insert.Age = $("#txtAge").val();
+                insert.Phone = $("#txtPhone").val();
+                insert.AltNumber = $("#txtAltPhone").val();
+                insert.Email = $("#txtEmail").val();
+                insert.AppDate = $("#txtDated").val();
+                insert.Speciality = SpecialityId;
+                insert.ShortDesc = $("#txtSDesc").val();
+                insert.Desc = $("#txtDesc").val();
+                insert.Status = 'New';
+                insert.CreatedBy = $("#txtEmail").val();
+                insert.CreatedDate = timestamp;
+                insert.ModifiedBy = $("#txtEmail").val();
+                insert.ModifiedDate = timestamp;
+
+                $.ajax({
+                    url: "/api/Appointment/Insert",
+                    method: "post",
+                    type: "Post",
+                    contentType: "Application/json",
+                    data: JSON.stringify(insert),
+                    dataType: "json",
+                    success: function (response) {
+                        $.notify(response);
+                        $.notify("We Will get back to you Soon");
+                        document.getElementById("AppointForm").reset();
+                    },
+                });
+            }
         });
     }
 
     $(document).ready(function () {
-        $.notify("Page Loaded");
+
+        
+
         var form = document.getElementById("AppointForm");
+        //Getting Specialities
+        $.ajax({
+
+            url: '/api/SpName',
+            method: 'Get',
+            dataType: 'json',
+
+            success: function (data) {
+                $('txtSpeciality').append(data);
+                $.each(data, function (key, value) {
+                    $("#txtSpeciality").append(
+
+                        "<option value='" + value + "'>" + value + "</option>"
+
+                    );
+                });
+            }
+        });
+
         $("#btnBookNow").click(function (form) {
             $("#AppointForm").validate({
                 rules: {
@@ -165,9 +189,6 @@
                     }
                 },
                 submitHandler: function (form) {
-                    if (("$ddlSpeciality").val() === 'Select')
-                        alert("Select Speciality")
-                    else
                     insertappoint();
                 }
             });

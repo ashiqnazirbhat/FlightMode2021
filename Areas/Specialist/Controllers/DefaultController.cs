@@ -13,5 +13,9 @@ namespace FlightMode.Areas.Specialist.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            return View();
+        }
     }
 }

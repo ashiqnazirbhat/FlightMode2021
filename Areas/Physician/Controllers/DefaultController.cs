@@ -13,5 +13,9 @@ namespace FlightMode.Areas.Physician.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            return View();
+        }
     }
 }

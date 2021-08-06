@@ -30,5 +30,9 @@ namespace FlightMode.Areas.TeleService.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            return View();
+        }
     }
 }

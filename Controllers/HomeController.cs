@@ -31,28 +31,13 @@ namespace FlightMode.Controllers
         {
             return View();
         }
-        public ActionResult Try()
+        public ActionResult WebTeam()
         {
             return View();
         }
         public ActionResult Register()
         {
             return View();
-        }
-        public ActionResult UpdateProfile()
-        {
-            return View();
-        }
-
-        public string CheckRole(string value)
-        {
-            ViewBag.StoreItem = value;
-
-            return value;
-            //Url.Action("Index", "Admin/default", null);
-
-            //return View();
-            
         }
     }
 }

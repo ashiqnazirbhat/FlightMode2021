@@ -62,5 +62,14 @@ namespace FlightMode.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SPNames");
         }
+    
+        public virtual ObjectResult<Nullable<long>> SpId(string spName)
+        {
+            var spNameParameter = spName != null ?
+                new ObjectParameter("SpName", spName) :
+                new ObjectParameter("SpName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("SpId", spNameParameter);
+        }
     }
 }
