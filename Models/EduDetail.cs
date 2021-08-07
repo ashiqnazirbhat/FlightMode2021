@@ -14,6 +14,12 @@ namespace FlightMode.Models
     
     public partial class EduDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EduDetail()
+        {
+            this.PhysicianDetails = new HashSet<PhysicianDetail>();
+        }
+    
         public long EduDetailsId { get; set; }
         public string DegreeName { get; set; }
         public string CollgeName { get; set; }
@@ -23,5 +29,8 @@ namespace FlightMode.Models
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhysicianDetail> PhysicianDetails { get; set; }
     }
 }

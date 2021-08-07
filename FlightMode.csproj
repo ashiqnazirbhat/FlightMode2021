@@ -2193,6 +2193,7 @@
     <Content Include="Content\SiteCss\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\SiteCss\images\about-bg.jpg" />
     <Content Include="Content\SiteCss\images\appointment-image.jpg" />
+    <Content Include="Content\SiteCss\images\captcha_background.png" />
     <Content Include="Content\SiteCss\images\CommingSoon.jpg" />
     <Content Include="Content\SiteCss\images\medconsult.png" />
     <Content Include="Content\SiteCss\images\news-image.jpg" />

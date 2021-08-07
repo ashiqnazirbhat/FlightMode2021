@@ -14,7 +14,14 @@ namespace FlightMode.Models
     
     public partial class Appointment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Appointment()
+        {
+            this.HealthReports = new HashSet<HealthReport>();
+        }
+    
         public long AppId { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Age { get; set; }
@@ -26,10 +33,15 @@ namespace FlightMode.Models
         public string ShortDesc { get; set; }
         public string Desc { get; set; }
         public string Status { get; set; }
-        public string Remarks { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
+        public string Remark { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HealthReport> HealthReports { get; set; }
+        public virtual Speciality Speciality1 { get; set; }
+        public virtual User User { get; set; }
     }
 }

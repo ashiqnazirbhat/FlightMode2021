@@ -15,7 +15,7 @@
           <Property Name="City" Type="varchar" MaxLength="100" />
           <Property Name="State" Type="varchar" MaxLength="100" />
           <Property Name="Zip" Type="varchar" MaxLength="50" />
-          <Property Name="IsPrimary" Type="bool" />
+          <Property Name="IsPrimary" Type="varchar" MaxLength="50" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreateDate" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
@@ -26,6 +26,7 @@
             <PropertyRef Name="AppId" />
           </Key>
           <Property Name="AppId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Gender" Type="varchar" MaxLength="45" />
           <Property Name="Age" Type="varchar" MaxLength="45" />
@@ -37,7 +38,7 @@
           <Property Name="ShortDesc" Type="varchar" MaxLength="255" />
           <Property Name="Desc" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="varchar" MaxLength="45" />
-          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
@@ -154,7 +155,7 @@
           <Property Name="ModifiedBy" Type="varchar" MaxLength="255" />
           <Property Name="ModifiedDate" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="longtext" />
-          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
           <Property Name="LastLogin" Type="datetime" Precision="0" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="EmailConfirmed" Type="bool" Nullable="false" />
@@ -251,6 +252,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKAddId">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCSpID">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCUserID">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEduId">
+          <End Role="EduDetails" Type="Self.EduDetails" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDetails">
+              <PropertyRef Name="EduDetailsId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="EduId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKExpId">
+          <End Role="ExpDeatils" Type="Self.ExpDeatils" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpDeatils">
+              <PropertyRef Name="ExpId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="ExpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPId">
+          <End Role="HealthParameters" Type="Self.HealthParameters" Multiplicity="0..1" />
+          <End Role="HealthReports" Type="Self.HealthReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthParameters">
+              <PropertyRef Name="HPId" />
+            </Principal>
+            <Dependent Role="HealthReports">
+              <PropertyRef Name="HPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSpID">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="SPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUserID">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="GetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
@@ -295,6 +392,38 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
+          <AssociationSet Name="FKAddId" Association="Self.FKAddId">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FKCSpID" Association="Self.FKCSpID">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKCUserID" Association="Self.FKCUserID">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKEduId" Association="Self.FKEduId">
+            <End Role="EduDetails" EntitySet="EduDetails" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKExpId" Association="Self.FKExpId">
+            <End Role="ExpDeatils" EntitySet="ExpDeatils" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKPId" Association="Self.FKPId">
+            <End Role="HealthParameters" EntitySet="HealthParameters" />
+            <End Role="HealthReports" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKSpID" Association="Self.FKSpID">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserID" Association="Self.FKUserID">
+            <End Role="User" EntitySet="User" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -310,17 +439,19 @@
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsPrimary" Type="Boolean" />
+          <Property Name="IsPrimary" Type="String" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="FMDataAccessModel.FKAddId" FromRole="Address" ToRole="User" />
         </EntityType>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="AppId" />
           </Key>
           <Property Name="AppId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Age" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -332,11 +463,14 @@
           <Property Name="ShortDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HealthReports" Relationship="FMDataAccessModel.FKAppId" FromRole="Appointment" ToRole="HealthReport" />
+          <NavigationProperty Name="Speciality1" Relationship="FMDataAccessModel.FKCSpID" FromRole="Appointment" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="FMDataAccessModel.FKCUserID" FromRole="Appointment" ToRole="User" />
         </EntityType>
         <EntityType Name="EduDetail">
           <Key>
@@ -351,6 +485,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKEduId" FromRole="EduDetail" ToRole="PhysicianDetail" />
         </EntityType>
         <EntityType Name="ExpDeatil">
           <Key>
@@ -366,6 +501,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKExpId" FromRole="ExpDeatil" ToRole="PhysicianDetail" />
         </EntityType>
         <EntityType Name="HealthParameter">
           <Key>
@@ -378,6 +514,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HealthReports" Relationship="FMDataAccessModel.FKPId" FromRole="HealthParameter" ToRole="HealthReport" />
         </EntityType>
         <EntityType Name="HealthReport">
           <Key>
@@ -391,6 +528,8 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointment" Relationship="FMDataAccessModel.FKAppId" FromRole="HealthReport" ToRole="Appointment" />
+          <NavigationProperty Name="HealthParameter" Relationship="FMDataAccessModel.FKPId" FromRole="HealthReport" ToRole="HealthParameter" />
         </EntityType>
         <EntityType Name="PhysicianDetail">
           <Key>
@@ -410,6 +549,10 @@
           <Property Name="SPId" Type="Int64" />
           <Property Name="EduId" Type="Int64" />
           <Property Name="ExpId" Type="Int64" />
+          <NavigationProperty Name="EduDetail" Relationship="FMDataAccessModel.FKEduId" FromRole="PhysicianDetail" ToRole="EduDetail" />
+          <NavigationProperty Name="ExpDeatil" Relationship="FMDataAccessModel.FKExpId" FromRole="PhysicianDetail" ToRole="ExpDeatil" />
+          <NavigationProperty Name="Speciality" Relationship="FMDataAccessModel.FKSpID" FromRole="PhysicianDetail" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="FMDataAccessModel.FKUserID" FromRole="PhysicianDetail" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -432,6 +575,8 @@
           <Property Name="CreatedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKSpID" FromRole="Speciality" ToRole="PhysicianDetail" />
+          <NavigationProperty Name="Appointments" Relationship="FMDataAccessModel.FKCSpID" FromRole="Speciality" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -450,7 +595,6 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastLogin" Type="DateTime" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
@@ -466,6 +610,10 @@
           <NavigationProperty Name="UserClaims" Relationship="Self.FK_UserClaim_User_UserId" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogins" Relationship="Self.FK_UserLogin_User_UserId" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Address" Relationship="FMDataAccessModel.FKAddId" FromRole="User" ToRole="Address" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKUserID" FromRole="User" ToRole="PhysicianDetail" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointments" Relationship="FMDataAccessModel.FKCUserID" FromRole="User" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -553,9 +701,153 @@
           </FunctionImport>
           <FunctionImport Name="SPNames" ReturnType="Collection(String)" />
           <FunctionImport Name="SpId" ReturnType="Collection(Int64)">
-            <Parameter Name="SpName" Mode="In" Type="String" />
+          <Parameter Name="SpName" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FKAddId" Association="FMDataAccessModel.FKAddId">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FKEduId" Association="FMDataAccessModel.FKEduId">
+            <End Role="EduDetail" EntitySet="EduDetails" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKExpId" Association="FMDataAccessModel.FKExpId">
+            <End Role="ExpDeatil" EntitySet="ExpDeatils" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKSpID" Association="FMDataAccessModel.FKSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserID" Association="FMDataAccessModel.FKUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKAppId" Association="FMDataAccessModel.FKAppId">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKPId" Association="FMDataAccessModel.FKPId">
+            <End Role="HealthParameter" EntitySet="HealthParameters" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKCSpID" Association="FMDataAccessModel.FKCSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKCUserID" Association="FMDataAccessModel.FKCUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FKAddId">
+          <End Type="FMDataAccessModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEduId">
+          <End Type="FMDataAccessModel.EduDetail" Role="EduDetail" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDetail">
+              <PropertyRef Name="EduDetailsId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="EduId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKExpId">
+          <End Type="FMDataAccessModel.ExpDeatil" Role="ExpDeatil" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpDeatil">
+              <PropertyRef Name="ExpId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="ExpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSpID">
+          <End Type="FMDataAccessModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="SPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUserID">
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAppId">
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="AppId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPId">
+          <End Type="FMDataAccessModel.HealthParameter" Role="HealthParameter" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthParameter">
+              <PropertyRef Name="HPId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="HPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCSpID">
+          <End Type="FMDataAccessModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="Speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCUserID">
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -582,6 +874,8 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="FMDataAccessModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AppDate" ColumnName="AppDate" />
                 <ScalarProperty Name="AppId" ColumnName="AppId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -594,7 +888,6 @@
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="Speciality" ColumnName="Speciality" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -706,6 +999,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FMDataAccessModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
@@ -719,7 +1013,6 @@
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />

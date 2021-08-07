@@ -14,6 +14,12 @@ namespace FlightMode.Models
     
     public partial class HealthParameter
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HealthParameter()
+        {
+            this.HealthReports = new HashSet<HealthReport>();
+        }
+    
         public long HPId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -21,5 +27,8 @@ namespace FlightMode.Models
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HealthReport> HealthReports { get; set; }
     }
 }

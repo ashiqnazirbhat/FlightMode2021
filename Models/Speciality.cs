@@ -14,6 +14,13 @@ namespace FlightMode.Models
     
     public partial class Speciality
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Speciality()
+        {
+            this.PhysicianDetails = new HashSet<PhysicianDetail>();
+            this.Appointments = new HashSet<Appointment>();
+        }
+    
         public long SPId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -23,5 +30,10 @@ namespace FlightMode.Models
         public string CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhysicianDetail> PhysicianDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

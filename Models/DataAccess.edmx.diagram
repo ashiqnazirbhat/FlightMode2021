@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1f3c24eb7a83494c91fb5e4c67e7597f" Name="Diagram1" ZoomLevel="90">
-        <EntityTypeShape EntityType="FMDataAccessModel.Address" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.Appointment" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.EduDetail" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.ExpDeatil" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.HealthParameter" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.HealthReport" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMDataAccessModel.PhysicianDetail" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="1f3c24eb7a83494c91fb5e4c67e7597f" Name="Diagram1" ZoomLevel="29">
+        <EntityTypeShape EntityType="FMDataAccessModel.Address" Width="1.5" PointX="7.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.Appointment" Width="1.5" PointX="0.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.EduDetail" Width="1.5" PointX="5.125" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.ExpDeatil" Width="1.5" PointX="3.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.HealthParameter" Width="1.5" PointX="11.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.HealthReport" Width="1.5" PointX="9.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMDataAccessModel.PhysicianDetail" Width="1.5" PointX="0.5" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FMDataAccessModel.Role" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FMDataAccessModel.Speciality" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FMDataAccessModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
@@ -20,6 +20,15 @@
         <AssociationConnector Association="FMDataAccessModel.FK_UserClaim_User_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FMDataAccessModel.FK_UserLogin_User_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FMDataAccessModel.UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="FMDataAccessModel.FKAddId" />
+        <AssociationConnector Association="FMDataAccessModel.FKEduId" />
+        <AssociationConnector Association="FMDataAccessModel.FKExpId" />
+        <AssociationConnector Association="FMDataAccessModel.FKSpID" />
+        <AssociationConnector Association="FMDataAccessModel.FKUserID" />
+        <AssociationConnector Association="FMDataAccessModel.FKAppId" />
+        <AssociationConnector Association="FMDataAccessModel.FKPId" />
+        <AssociationConnector Association="FMDataAccessModel.FKCSpID" />
+        <AssociationConnector Association="FMDataAccessModel.FKCUserID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

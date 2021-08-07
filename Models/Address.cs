@@ -14,16 +14,25 @@ namespace FlightMode.Models
     
     public partial class Address
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Address()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public long AddId { get; set; }
         public string Adress1 { get; set; }
         public string Adress2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-        public Nullable<bool> IsPrimary { get; set; }
+        public string IsPrimary { get; set; }
         public string CreatedBy { get; set; }
         public string CreateDate { get; set; }
         public string ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

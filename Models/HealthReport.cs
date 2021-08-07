@@ -22,5 +22,8 @@ namespace FlightMode.Models
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+    
+        public virtual Appointment Appointment { get; set; }
+        public virtual HealthParameter HealthParameter { get; set; }
     }
 }

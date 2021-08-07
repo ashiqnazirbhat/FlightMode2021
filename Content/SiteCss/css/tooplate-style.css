@@ -340,6 +340,10 @@ header span i {
 .navbar-default .navbar-brand .fa {
     color: #a5c422;
 }
+.navbar-default .navbar-brand .fa a:hover {
+        background: #4267b2;
+        color: #ffffff !important;
+}
 
 .navbar-default .navbar-nav li.appointment-btn {
     margin: 3px 0 0 20px;
@@ -369,14 +373,16 @@ header span i {
     transition: all ease-in-out 0.4s;
 }
 
-.navbar-default .navbar-nav>li a:hover {
-    color: #393939 !important;
+.navbar-default .navbar-nav > li a:hover {
+        background: #4267b2;
+        color: #393939 !important;
 }
 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav>li>a:focus {
-    color: #555555;
-    background-color: transparent;
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+        color: #555555;
+        background: #a5c422;
+        /* background-color: transparent;*/
 }
 
 .navbar-default .navbar-nav>.active>a,
@@ -1106,4 +1112,22 @@ DropDown Menu*/
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+.float {
+    position: fixed;
+    width: 150px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color:blue;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index:9999;
+}
+
+.my-float {
+    margin-top: 22px;
 }
