@@ -27,15 +27,15 @@ namespace FlightMode
             config.MapHttpAttributeRoutes();
 
             // 
-            config.AddODataQueryFilter();
+            /*config.AddODataQueryFilter()*/
 
-            // New code:
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Speciality>("Specialities");
-            config.Routes.MapODataServiceRoute(
-                routeName: "ODataRoute",
-                routePrefix: "api",
-                model: builder.GetEdmModel());
+            //// New code:
+            //ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            //builder.EntitySet<Speciality>("Specialities");
+            //config.Routes.MapODataServiceRoute(
+            //    routeName: "ODataRoute",
+            //    routePrefix: "api",
+            //    model: builder.GetEdmModel());
 
 
             config.Routes.MapHttpRoute(

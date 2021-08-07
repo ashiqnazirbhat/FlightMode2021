@@ -39,5 +39,9 @@ namespace FlightMode.Controllers
         {
             return View();
         }
+        public ActionResult Diagnosis()
+        {
+            return View();
+        }
     }
 }

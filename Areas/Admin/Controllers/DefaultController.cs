@@ -22,6 +22,50 @@ namespace FlightMode.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult AddPackage()
+        {
+            return View();
+        }
+        public ActionResult AllPackage()
+        {
+            return View();
+        }
+        public ActionResult EditPackage()
+        {
+            return View();
+        }
+        public ActionResult AddItem()
+        {
+            return View();
+        }
+        public ActionResult AllItem()
+        {
+            return View();
+        }
+        public ActionResult EditItem()
+        {
+            return View();
+        }
+        public ActionResult AddTempReport()
+        {
+            return View();
+        }
+        public ActionResult AllTempReports()
+        {
+            return View();
+        }
+        public ActionResult AddTempTests()
+        {
+            return View();
+        }
+        public ActionResult ReportPrintPreview()
+        {
+            return View();
+        }
+        public ActionResult ReportPrint()
+        {
+            return View();
+        }
         public ActionResult Logout()
         {
             return View();

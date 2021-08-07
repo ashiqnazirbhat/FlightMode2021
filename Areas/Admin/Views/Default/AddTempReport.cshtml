@@ -1,0 +1,190 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Add Report</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Patient Information</h3>
+            </div>
+            <div class="card-body">
+                <form class="align-content-center">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Lab No</label>
+                                <input type="number" class="form-control" id="labno" placeholder="Lab No">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Age</label>
+                                <input type="number" class="form-control" id="age" placeholder="Your Age">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtGender">Gender</label>
+                                <select class="form-control" id="gender">
+                                    <option>Select</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ref By</label>
+                                <input type="text" class="form-control" id="refby" placeholder="Ref By">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Amount</label>
+                                <input type="number" class="form-control" id="amount" placeholder="Amount">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Discount</label>
+                                <input type="number" class="form-control" id="discount" placeholder="Discount">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Final Amount</label>
+                                <input type="number" class="form-control" id="finalamount" placeholder="Final Amount">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Collected</label>
+                                <div class="input-group date" id="reservationdatetime1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" id="collected" data-target="#reservationdatetime1" />
+                                    <div class="input-group-append" data-target="#reservationdatetime1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recieved</label>
+                                <div class="input-group date" id="reservationdatetime2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" id="recieved" data-target="#reservationdatetime2" />
+                                    <div class="input-group-append" data-target="#reservationdatetime2" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Reported</label>
+                                <div class="input-group date" id="reservationdatetime3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" id="reported" data-target="#reservationdatetime3" />
+                                    <div class="input-group-append" data-target="#reservationdatetime3" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#reservationdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
+                                    $('#reservationdatetime2').datetimepicker({ icons: { time: 'far fa-clock' } });
+                                    $('#reservationdatetime3').datetimepicker({ icons: { time: 'far fa-clock' } });
+                                });
+                            </script>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Report Status</label>
+                                <select class="form-control" id="status">
+                                    <option>Select</option>
+                                    <option>Completed</option>
+                                    <option>On Hold</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">CGST</label>
+                                <input type="number" class="form-control" id="cgst" placeholder="CGST">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">SGST</label>
+                                <input type="number" class="form-control" id="sgst" placeholder="SGST">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="submit" id="btnAddReport" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i>  Add Report</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/notify.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        $("#btnAddReport").click(function () {
+
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
+            var tempreport = {};
+            tempreport.name = $("#name").val();
+            tempreport.labno = $("#labno").val();
+            tempreport.age = $("#age").val();
+            tempreport.gender = $("#gender").val();
+            tempreport.refby = $("#refby").val();
+            tempreport.amount = $("#amount").val();
+            tempreport.discount = $("#discount").val();
+            tempreport.finalamount = $("#finalamount").val();
+            tempreport.collected = $("#collected").val();
+            tempreport.recieved = $("#recieved").val();
+            tempreport.reported = $("#reported").val();
+            tempreport.status = $("#status").val();
+            tempreport.cgst = $("#cgst").val();
+            tempreport.sgst = $("#sgst").val();
+
+            $.ajax({
+                url: "/api/Report",
+                method: "post",
+                type: "Post",
+                contentType: "Application/json",
+                data: JSON.stringify(tempreport),
+                dataType: "json",
+                success: function (response) {
+                    $.notify("Report Added", "success");
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

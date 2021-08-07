@@ -20,6 +20,8 @@ namespace FlightMode.Models
             this.UserClaims = new HashSet<UserClaim>();
             this.UserLogins = new HashSet<UserLogin>();
             this.Roles = new HashSet<Role>();
+            this.PhysicianDetails = new HashSet<PhysicianDetail>();
+            this.Appointments = new HashSet<Appointment>();
         }
     
         public string Id { get; set; }
@@ -35,7 +37,6 @@ namespace FlightMode.Models
         public string ModifiedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string Status { get; set; }
-        public string Remarks { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -48,6 +49,7 @@ namespace FlightMode.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string Remark { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserClaim> UserClaims { get; set; }
@@ -55,5 +57,10 @@ namespace FlightMode.Models
         public virtual ICollection<UserLogin> UserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual Address Address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhysicianDetail> PhysicianDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

@@ -211,6 +211,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Diagnostics\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Diagnostics\DiagnosticsAreaRegistration.cs" />
     <Compile Include="Areas\TeleService\Controllers\DefaultController.cs" />
     <Compile Include="Areas\TeleService\TeleServiceAreaRegistration.cs" />
     <Compile Include="Controllers\api\AppointmentController.cs" />
@@ -229,11 +231,17 @@
     <Compile Include="Areas\Specialist\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Specialist\SpecialistAreaRegistration.cs" />
     <Compile Include="Controllers\api\AccountController.cs" />
+    <Compile Include="Controllers\api\ItemController.cs" />
+    <Compile Include="Controllers\api\PackageController.cs" />
+    <Compile Include="Controllers\api\PackageIdController.cs" />
+    <Compile Include="Controllers\api\PackagesController.cs" />
+    <Compile Include="Controllers\api\ReportController.cs" />
     <Compile Include="Controllers\api\RoleNameController.cs" />
     <Compile Include="Controllers\api\RolesController.cs" />
     <Compile Include="Controllers\api\SpecialitiesController.cs" />
     <Compile Include="Controllers\api\SpIdController.cs" />
     <Compile Include="Controllers\api\SPNameController.cs" />
+    <Compile Include="Controllers\api\TestController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\api\UserIdController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -277,6 +285,9 @@
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\package_item.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PhysicianDetail.cs">
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
@@ -284,6 +295,15 @@
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Speciality.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempReport.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempTest.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\test_package.cs">
       <DependentUpon>DataAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -2186,6 +2206,8 @@
     <Content Include="Areas\css\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\SiteCss\css\animate.css" />
     <Content Include="Content\SiteCss\css\bootstrap.min.css" />
+    <Content Include="Content\SiteCss\css\bootstrap1.min.css" />
+    <Content Include="Content\SiteCss\css\custom.css" />
     <Content Include="Content\SiteCss\css\font-awesome.min.css" />
     <Content Include="Content\SiteCss\css\owl.carousel.css" />
     <Content Include="Content\SiteCss\css\owl.theme.default.min.css" />
@@ -2193,24 +2215,32 @@
     <Content Include="Content\SiteCss\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\SiteCss\images\about-bg.jpg" />
     <Content Include="Content\SiteCss\images\appointment-image.jpg" />
+    <Content Include="Content\SiteCss\images\captcha_background.png" />
     <Content Include="Content\SiteCss\images\CommingSoon.jpg" />
+    <Content Include="Content\SiteCss\images\imgabout.jpg" />
     <Content Include="Content\SiteCss\images\medconsult.png" />
     <Content Include="Content\SiteCss\images\news-image.jpg" />
     <Content Include="Content\SiteCss\images\news-image1.jpg" />
     <Content Include="Content\SiteCss\images\news-image2.jpg" />
     <Content Include="Content\SiteCss\images\news-image3.jpg" />
+    <Content Include="Content\SiteCss\images\ReportFooter.gif" />
+    <Content Include="Content\SiteCss\images\ReportHeader.gif" />
     <Content Include="Content\SiteCss\images\slider1.jpg" />
     <Content Include="Content\SiteCss\images\slider2.jpg" />
     <Content Include="Content\SiteCss\images\slider3.jpg" />
     <Content Include="Content\SiteCss\images\team-image1.jpg" />
-    <Content Include="Content\SiteCss\images\team-image2.jpg" />
+    <Content Include="Content\SiteCss\images\team-image2.jpeg" />
     <Content Include="Content\SiteCss\images\team-image3.jpg" />
     <Content Include="Content\SiteCss\js\bootstrap.min.js" />
+    <Content Include="Content\SiteCss\js\bootstrap1.min.js" />
     <Content Include="Content\SiteCss\js\custom.js" />
     <Content Include="Content\SiteCss\js\jquery.js" />
     <Content Include="Content\SiteCss\js\jquery.stellar.min.js" />
     <Content Include="Content\SiteCss\js\jquery.sticky.js" />
+    <Content Include="Content\SiteCss\js\jquery1.min.js" />
+    <Content Include="Content\SiteCss\js\main1.js" />
     <Content Include="Content\SiteCss\js\owl.carousel.min.js" />
+    <Content Include="Content\SiteCss\js\popper1.min.js" />
     <Content Include="Content\SiteCss\js\smoothscroll.js" />
     <Content Include="Content\SiteCss\js\smoothscroll2.js" />
     <Content Include="Content\SiteCss\js\wow.min.js" />
@@ -2395,11 +2425,13 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Diagnostics\Data\" />
     <Folder Include="Areas\Patient\Data\" />
     <Folder Include="Areas\Physician\Data\" />
     <Folder Include="Areas\Specialist\Data\" />
     <Folder Include="Areas\TeleService\Data\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2426,8 +2458,36 @@
     <Content Include="Areas\Specialist\Views\Default\Logout.cshtml" />
     <Content Include="Areas\TeleService\Views\Default\Logout.cshtml" />
     <Content Include="Content\SiteCss\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Diagnostics\Views\web.config" />
+    <Content Include="Areas\Diagnostics\Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Areas\Diagnostics\Views\Shared\_Navbar.cshtml" />
+    <Content Include="Areas\Diagnostics\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Diagnostics\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Diagnostics\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Patient\Views\Default\ReportFeedback.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditReportCat.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AllReportCat.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AllPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddFaq.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ViewFaq.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditFaq.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ViewReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AllReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ViewItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\EditItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddTempReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AddTempTests.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\AllTempReports.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ReportPrintPreview.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\ReportPrint.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\WebTeam.cshtml" />
+    <Content Include="Views\Home\Diagnosis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

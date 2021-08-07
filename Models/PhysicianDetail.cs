@@ -28,5 +28,10 @@ namespace FlightMode.Models
         public Nullable<long> SPId { get; set; }
         public Nullable<long> EduId { get; set; }
         public Nullable<long> ExpId { get; set; }
+    
+        public virtual EduDetail EduDetail { get; set; }
+        public virtual ExpDeatil ExpDeatil { get; set; }
+        public virtual Speciality Speciality { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace FlightMode.Models
     
     public partial class ExpDeatil
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ExpDeatil()
+        {
+            this.PhysicianDetails = new HashSet<PhysicianDetail>();
+        }
+    
         public long ExpId { get; set; }
         public string Position { get; set; }
         public string Description { get; set; }
@@ -24,5 +30,8 @@ namespace FlightMode.Models
         public string CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhysicianDetail> PhysicianDetails { get; set; }
     }
 }

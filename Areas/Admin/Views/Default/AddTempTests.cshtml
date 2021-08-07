@@ -1,0 +1,232 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Add Report</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#lblReportId').text(localStorage.getItem("ReportId"))
+        $.ajax({
+
+            url: '/api/Test/' + localStorage.getItem("ReportId"),
+            method: 'Get',
+            dataType: 'json',
+
+            success: function (data) {
+
+                $('#tblTests').dataTable({
+
+                    data: data,
+                    'scrollY': 350,
+                    'autoWidth': true,
+
+                    columns: [
+
+                        { 'data': 'testid'},
+                        { 'data': 'name'},
+                        { 'data': 'value'},
+                        { 'data': 'unit'},
+                        { 'data': 'bioreference'},
+                        { 'data': 'remarks' },
+                        {
+                            'data': 'testid',
+                            'render': function (data) {
+                                return "<a class='btn btn-primary btn-sm mx-auto' onclick=Edit(" + data + ")>  Edit </a> <a class='btn btn-danger btn-sm' onclick=Delete(" + data + ")>  Delete </a>"
+                            },
+                            'orderable': false,
+                            'width': '150px'
+                        },
+                    ],
+                    language: {
+                        "emptyTable": " <b> No Data Avaliable </b> ",
+                        "class": "text-center mx-auto w-auto"
+                    }
+                });
+            }
+        });
+    });
+
+    function Edit(id) {
+        var url = '/Admin/Default/AddTempTests';
+        window.location.href = url;
+    }
+</script>
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Add Test Information</h3>
+            </div>
+            <div class="card-body">
+                <form class="align-content-center">
+                    <div class="row">
+                        <label class="text-align-center"> Report ID: </label> <br />
+                        <label class="text-align-center" id="lblReportId"><b>  </b></label>
+                        @* Our Html *@
+                        <div class="container-fluid">
+                            <div class="card card-primary">
+                                <div class="card-header">Added Tests</div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table  table-striped table-hover text-center" id="tblTests">
+                                            <thead class="mx-auto w-auto">
+                                                <tr>
+                                                    <th scope="col">Test Id</th>
+                                                    <th scope="col">Test Name</th>
+                                                    <th scope="col">Value</th>
+                                                    <th scope="col">Unit</th>
+                                                    <th scope="col">Bio Reference</th>
+                                                    <th scope="col">Remarks</th>
+                                                    <th scope="col">Controls</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot class="mx-auto w-auto">
+                                                <tr>
+                                                    <th scope="col">Test Id</th>
+                                                    <th scope="col">Test Name</th>
+                                                    <th scope="col">Value</th>
+                                                    <th scope="col">Unit</th>
+                                                    <th scope="col">Bio Reference</th>
+                                                    <th scope="col">Remarks</th>
+                                                    <th scope="col">Controls</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Form *@
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header"> Add New Test </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Test Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Test Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Value</label>
+                                        <input type="text" class="form-control" id="value" placeholder="Value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Unit</label>
+                                        <input type="text" class="form-control" id="unit" placeholder="Unit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Bio Reference</label>
+                                        <input type="text" class="form-control" id="bioinfo" placeholder="Bio Reference">
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="control-label col-md-12" for="email" id="remarks">Additional Remarks (If Any):</label>
+                                        <div class="col-md-12">
+                                            <textarea class="col-md-12" draggable="true">
+        
+                                   </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button type="submit" id="btnAddTest" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i>  Add Test</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/notify.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        $.ajax({
+            url: '/api/Packages',
+            method: 'Get',
+            dataType: 'json',
+            success: function (data) {
+
+                $.each(data, function (i, val) {
+                    $("#selected_package").append(new Option(val, val));
+                });
+            }
+        });
+
+        $("#btnAddTest").click(function () {
+
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
+            var temptest = {};
+            temptest.reportid = localStorage.getItem("ReportId");
+            temptest.name = $("#name").val();
+            temptest.value = $("#value").val();
+            temptest.unit = $("#unit").val();
+            temptest.bioreference = $("#bioinfo").val();
+            temptest.remarks = $("#remarks").val();
+           
+
+            $.ajax({
+                url: "/api/Test",
+                method: "post",
+                type: "Post",
+                contentType: "Application/json",
+                data: JSON.stringify(temptest),
+                dataType: "json",
+                success: function (response) {
+                    $.notify("Report Added", "success");
+                    var url = '/Admin/Default/AddTempTests';
+                    window.location.href = url;
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

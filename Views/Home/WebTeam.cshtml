@@ -1,19 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Team";
+    ViewData["Title"] = "Web-Team";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid">
     <div class="row">
-        <div>
-            <div class="col-md-4 col-md-offset-4">
-                <h2 class="wow fadeInUp" data-wow-delay="0.1s">Web Development Team</h2>
-            </div>
-        </div>
         <div class="clearfix"></div>
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-6 col-md-offset-3">
             <div class="card mx-auto text-center">
                 <div class="card-header">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Web Development Team</h2>
                 </div>
                 <div class="card-body text-center text-align-center">
                     <hr class="m-4" />
@@ -23,3 +19,47 @@
         </div>
     </div>
 </div>
+
+
+
+@*<div class="container-fluid">
+    <div class="col-md-3 mx-auto">
+
+    </div>
+    <div class="img-bordered img-fluid form-control" id="divGenerateRandomValues"></div>
+    <input class="form-control" type="text" id="textInput" />
+    <buttonn class="btn btn-primary" id="btnGetCaptcha">Submit</buttonn>
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnGetCaptcha").prop("disabled", true);
+            var iNumber = Math.floor(Math.random() * 10000);
+            $("#divGenerateRandomValues").css({ "background-image": 'url(/Content/SiteCss/images/captcha_background.png)','width':'120px', 'height':'40px' });
+            $("#divGenerateRandomValues").html("<input id='txtNewInput'></input>");
+            $("#txtNewInput").css({ 'background': 'transparent', 'font-family': 'Arial', 'font-style': 'bold', 'font-size': '20px', 'text-align': 'center', 'letter-spacing': '5px' });
+            $("#txtNewInput").css({ 'width': '100px', 'border': 'none', 'color': 'black' });
+            $("#txtNewInput").val(iNumber);
+            $("#txtNewInput").prop('disabled', true);
+
+            $("#btnGetCaptcha").click(function () {
+            if ($("#textInput").val() != iNumber) {
+            alert("Wrong Input!");
+                            }
+            else {
+            alert("Correct Input!!!");
+                            }
+            });
+            var  wrongInput = function () {
+            if ($("#textInput").val() != iNumber) {
+            returntrue;
+                            }
+            else {
+            returnfalse;
+                            }
+                        };
+            $("#textInput").bind('input', function () {
+                $("#btnGetCaptcha").prop('disabled', wrongInput);
+            });
+        });
+</script>*@

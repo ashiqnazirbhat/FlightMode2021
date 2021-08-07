@@ -1,0 +1,157 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Add Package</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header"> Add Package</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Package Name</label>
+                            <input type="text" class="form-control" id="package_name" placeholder="Test Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">No of Parameters</label>
+                            <input type="text" class="form-control" id="package_pno" placeholder="Value">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtGender">Profile</label>
+                            <select class="form-control" id="package_profile">
+                                <option>Select</option>
+                                <option>Heart</option>
+                                <option>Bone</option>
+                                <option>Vitamin</option>
+                                <option>Thyroid</option>
+                                <option>Blood</option>
+                                <option>Liver</option>
+                                <option>Kidney</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtGender">Habits</label>
+                            <select class="form-control" id="package_habits">
+                                <option>Select</option>
+                                <option>Alcohol</option>
+                                <option>Smoking</option>
+                                <option>No Exercise</option>
+                                <option>Junk Food</option>
+                                <option>Poor Nutrtional Habits</option>
+                                <option>Stress</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtGender">Conditions</label>
+                            <select class="form-control" id="package_conditions">
+                                <option>Select</option>
+                                <option>Obesity</option>
+                                <option>Arthritis</option>
+                                <option>Fever</option>
+                                <option>Pregnancy</option>
+                                <option>Diabetes</option>
+                                <option>Anemia</option>
+                                <option>Std/Viral Markers</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Final Price</label>
+                            <input type="text" class="form-control" id="package_price" placeholder="Final Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Discounted Price</label>
+                            <input type="text" class="form-control" id="package_dprice" placeholder="Discounted Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtGender">Package Status</label>
+                            <select class="form-control" id="package_status">
+                                <option>Select</option>
+                                <option>Active</option>
+                                <option>Not Active</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="btnAddPackage" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i>  Add Package </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/notify.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+
+        $("#btnAddPackage").click(function () {
+
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
+            var tp = {};
+            tp.test_package_name = $("#package_name").val();
+            tp.test_package_pno = $("#package_pno").val();
+            tp.test_package_profile = $("#package_profile").val();
+            tp.test_package_habits = $("#package_habits").val();
+            tp.test_package_conditions = $("#package_conditions").val();
+            tp.test_package_price = $("#package_price").val();
+            tp.test_package_dprice = $("#package_dprice").val();
+            tp.test_package_created = timestamp;
+            tp.test_package_created_by = localStorage.getItem("userName");
+            tp.test_package_updated = timestamp;
+            tp.test_package_updated_by = localStorage.getItem("userName");
+            tp.test_package_status = $("#package_status").val();
+
+            $.ajax({
+                url: "/api/Package",
+                method: "post",
+                type: "Post",
+                contentType: "Application/json",
+                data: JSON.stringify(tp),
+                dataType: "json",
+                success: function (response) {
+                    $.notify("Package Added", "success");
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

@@ -17,18 +17,18 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @*<li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="OurVission">Our Vision</a></li>
-                <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
-                <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="OurVission">Our Vision</a></li>
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Team">Team</a></li>
+        <li><a class="smoothScroll" asp-area="" asp-controller="Home" asp-action="Career">Career with us</a></li>*@
                 @*Link Text,Action Method, Controler Name*@
                 <li class="smoothScroll">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li class="smoothScroll">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li class="smoothScroll">@Html.ActionLink("Career with us", "Career", "Home")</li>
                 <li class="smoothScroll"><a href="#contact" class="smoothScroll">Contact</a></li>
+                <li class="smoothScroll">@Html.ActionLink("Diagnosis", "Diagnosis", "Home")</li>
                 <li class="smoothScroll">@Html.ActionLink("Register", "Register", "Home")</li>
                 <li class="scroll-smooth">@Html.ActionLink("Login", "Login", "Home")</li>
-                @*<li><a class="appointment-btn" asp-area="" asp-controller="Home" asp-action="Appointment">Make an appointment</a></li>*@
-                <li class="appointment-btn smoothScroll">@Html.ActionLink("Make an Appointment", "Appointment", "Home")</li>
+                <li class="appointment-btn smoothScroll">@Html.ActionLink("Book an Appointment", "Appointment", "Home")</li>
             </ul>
         </div>
     </div>

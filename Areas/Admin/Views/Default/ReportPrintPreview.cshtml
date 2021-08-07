@@ -1,0 +1,191 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Report Print Preview</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div>
+<!-- /.container-fl -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Report Info</h3>
+            </div>
+            <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Name</label>
+                                <label for="exampleInputEmail1" id="name"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Lab No</label>
+                                <label for="exampleInputEmail1" id="labno"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Age</label>
+                                <label for="exampleInputEmail1" id="age"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtGender">Gender</label>
+                                <label for="exampleInputEmail1" id="gender"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ref By</label>
+                                <label for="exampleInputEmail1" id="refby"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Amount</label>
+                                <label for="exampleInputEmail1" id="amount"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Discount</label>
+                                <label for="exampleInputEmail1" id="discount"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Final Amount</label>
+                                <label for="exampleInputEmail1" id="finalamount"></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Collected</label>
+                                <label for="exampleInputEmail1" id="collected"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Recieved</label>
+                                <label for="exampleInputEmail1" id="recieved"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Reported</label>
+                                <label for="exampleInputEmail1" id="reported"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Report Status</label>
+                                <label for="exampleInputEmail1" id="status"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">CGST</label>
+                                <label for="exampleInputEmail1" id="cgst"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">SGST</label>
+                                <label for="exampleInputEmail1" id="sgst"></label>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: '/api/Report/' + localStorage.getItem("ReportId"),
+            method: 'Get',
+            dataType: 'json',
+            success: function (data) {
+                $('#name').text(data[0].name);
+                $('#labno').text(data[0].labno);
+                $('#age').text(data[0].age);
+                $('#gender').text(data[0].gender);
+                $("#refby").text(data[0].refby);
+                $('#collected').text(data[0].collected);
+                $('#recieved').text(data[0].recieved);
+                $('#reported').text(data[0].reported);
+                $('#amount').text(data[0].amount);
+                $('#sgst').text(data[0].sgst);
+                $('#cgst').text(data[0].cgst);
+                $('#discount').text(data[0].discount);
+                $('#finalamount').text(data[0].finalamount);
+                $('#status').text(data[0].status);
+            }
+        });
+
+        $.ajax({
+            url: '/api/Test/' + localStorage.getItem("ReportId"),
+            method: 'Get',
+            dataType: 'json',
+            success: function (data) {
+                $('#tblTests').dataTable({
+                    data: data,
+                    'scrollY': 350,
+                    'autoWidth': true,
+
+                    columns: [
+
+                        { 'data': 'testid' },
+                        { 'data': 'name' },
+                        { 'data': 'value' },
+                        { 'data': 'unit' },
+                        { 'data': 'bioreference' },
+                        { 'data': 'remarks' },
+                    ],
+                    language: {
+                        "emptyTable": " <b> No Data Avaliable </b> ",
+                        "class": "text-center mx-auto w-auto"
+                    }
+                });
+            }
+        });
+
+        $("#btnPrint").click(function () {
+            var url = '/Admin/Default/ReportPrint';
+            window.location.href = url;
+        });
+    });
+
+</script>
+<div class="row">
+    @* Our Html *@
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">Added Tests</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table  table-striped table-hover text-center" id="tblTests">
+                        <thead class="mx-auto w-auto">
+                            <tr>
+                                <th scope="col">Test Id</th>
+                                <th scope="col">Test Name</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col">Bio Reference</th>
+                                <th scope="col">Remarks</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class=" col-md-5 col-md-offset-2">
+        <button type="submit" class="btn btn-primary" id="btnPrint"> Print Report</button>
+    </div>
+</div>

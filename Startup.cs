@@ -62,6 +62,26 @@ namespace FlightMode
                 }
             }
 
+            if (roleManager.RoleExists("Admin"))
+            {
+                //Here we create a Admin super user who will maintain the website                   
+
+                var user = new ApplicationUser();
+                user.UserName = "admin@drflightmode.com";
+                user.Email = "admin@drflightmode.com";
+
+                string userPWD = "admin@123";
+
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+
+                }
+            }
+
             // creating Creating Physician role     
             if (!roleManager.RoleExists(""))
             {

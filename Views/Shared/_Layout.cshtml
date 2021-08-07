@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="~/Content/SiteCss/css/animate.css">
     <link rel="stylesheet" href="~/Content/SiteCss/css/owl.carousel.css">
     <link rel="stylesheet" href="~/Content/SiteCss/css/owl.theme.default.min.css">
-
-
+    <link href="~/Content/SiteCss/css/custom.css" rel="stylesheet" />
+  
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="~/Content/SiteCss/css/tooplate-style.css">
 
@@ -50,13 +50,19 @@
             <div class="row">
                 @RenderBody()
             </div>
+            <a href="tel:+91 701-193-6139" class="float">
+                <i class="fa fa-phone my-float"> Call Us Now! </i>
+            </a>
         </div>
     </section>
 
     @*Footer*@
     @Html.Partial("_PageFooter")
 
+
+
     <!-- TemplateSCRIPTS -->
+    
     <script src="~/Content/SiteCss/js/bootstrap.min.js"></script>
     <script src="~/Content/SiteCss/js/jquery.sticky.js"></script>
     <script src="~/Content/SiteCss/js/jquery.stellar.min.js"></script>
@@ -64,6 +70,8 @@
     <script src="~/Content/SiteCss/js/smoothscroll.js"></script>
     <script src="~/Content/SiteCss/js/owl.carousel.min.js"></script>
     <script src="~/Content/SiteCss/js/custom.js"></script>
+    <script src="~/Content/SiteCss/js/main1.js"></script>
+    <script src="~/Content/SiteCss/js/popper1.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 

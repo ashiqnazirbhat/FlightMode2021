@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //JQuery Code to Get All Packages
+        $.ajax({
+            url: '/api/Package/',
+            method: 'Get',
+            dataType: 'json',
+            Accept: 'application/json',
+            success: function (data) {
+                $('#tblreports').removeAttr('width').dataTable({
+                    data: data,
+                    'scrollY': 350,
+                    'scrollX': 900,
+                    'word- wrap': 'break-word',
+                    columnDefs: [
+                        { width: 100, targets: 2 }
+                    ],
+                    'fixedColumns': 'true',
+                    columns: [
+                        { 'data': 'test_package_id' },
+                        { 'data': 'test_package_name' },
+                        { 'data': 'test_package_pno' },
+                        { 'data': 'test_package_profile' },
+                        { 'data': 'test_package_habits' },
+                        { 'data': 'test_package_conditions' },
+                        { 'data': 'test_package_price' },
+                        { 'data': 'test_package_dprice' },
+                        {
+                            'data': 'test_package_id',
+                            'render': function (data) {
+                                return "<a class='btn btn-primary btn-sm mx-auto' onclick=Edit(" + data + ")>  Edit </a> "
+                            },
+                            'orderable': false,
+                            'width': '150px'
+                        },
+                    ],
+                    language: {
+                        "emptyTable": "No Data Avaliable"
+                    }
+                });
+            }
+        });
+    });
+    function Edit(id) {
+        var url = '/Admin/Default/AddTempTests';
+        window.location.href = url;
+    }
+</script>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h5 class="m-0"> All Packages </h5>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active"> All Specialities</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h7>All Packages</h7>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table  table-striped table-hover text-wrap" id="tblpackages">
+                    <thead class="mx-auto">
+                        <tr>
+                            <th scope="col">Package Id</th>
+                            <th scope="col">Package Name</th>
+                            <th scope="col">Parameters</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Habits</th>
+                            <th scope="col">Conditions</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Discounted Price</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">Package Id</th>
+                            <th scope="col">Package Name</th>
+                            <th scope="col">Parameters</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Habits</th>
+                            <th scope="col">Conditions</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Discounted Price</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

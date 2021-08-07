@@ -89,37 +89,262 @@
                     </li>
                 </ul>
             </li>
-            @* Reports *@
+            @* Reports Management *@
+            <li class="nav-header">Report Management</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-circle"></i>
                     <p>
                         Reports
-                        <i class="fas fa-angle-left right"></i>
+                        <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @* 1st Level Items *@
                     <li class="nav-item">
-                        <a href="pages/examples/login.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Request Reports</p>
+                        <p class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            @Html.ActionLink("Add Temp Report", "AddTempReport", "Default")
+                        </p>
+                    </li>
+                    <li class="nav-item">
+                        <p class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            @Html.ActionLink("All Temp Reports", "AllTempReports", "Default")
+                        </p>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-dot-circle nav-icon"></i>
+                            <p>New Reports</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/examples/register.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-dot-circle nav-icon"></i>
+                            <p>Requested Reports</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-dot-circle nav-icon"></i>
                             <p>Updated Reports</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/examples/forgot-password.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-dot-circle nav-icon"></i>
                             <p>Archieved Reports</p>
                         </a>
                     </li>
+                    @* 2nd Level Items *@
+                    @* Reports *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Reports
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Add Reports</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>View Reports</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Edit Reports</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* Bookings *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Bookings
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Add Bookings</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>View Bookings</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Edit Bookings</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* Items *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Items
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <p href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    @Html.ActionLink("Add Item", "AddItem", "Default")
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    @Html.ActionLink("All Item", "AllItem", "Default")
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    @Html.ActionLink("Edit Item", "EditItem", "Default")
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    @* Items Description *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Item Descriptions
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Add Descriptions</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>View Descriptions</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Edit Descriptions</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* FAQ *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                FAQ's
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Add FAQ's</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>View FAQ's</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Edit FAQ's</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* Packages *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Packages
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <p class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    @Html.ActionLink("Add Package", "AddPackage", "Default")
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    @Html.ActionLink("All Package", "AllPackage", "Default")
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Edit Packages</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* Testimonials *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Testimonials
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Approve Testimonials</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>View Testimonials</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* End of 1st Level *@
                 </ul>
             </li>
-
             @* Specialities *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -153,7 +378,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Profile *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -162,7 +387,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Settings *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -171,7 +396,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Consult *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -180,7 +405,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Health Feed *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -189,7 +414,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Feedback *@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -198,7 +423,7 @@
                     </p>
                 </a>
             </li>
-
+            @* Logout *@
             <li class="nav-item">
                 <p class="nav-link">
                     <i class="nav-icon fas fa-book"></i>

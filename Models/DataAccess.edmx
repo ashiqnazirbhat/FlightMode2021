@@ -15,7 +15,7 @@
           <Property Name="City" Type="varchar" MaxLength="100" />
           <Property Name="State" Type="varchar" MaxLength="100" />
           <Property Name="Zip" Type="varchar" MaxLength="50" />
-          <Property Name="IsPrimary" Type="bool" />
+          <Property Name="IsPrimary" Type="varchar" MaxLength="50" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreateDate" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
@@ -26,6 +26,7 @@
             <PropertyRef Name="AppId" />
           </Key>
           <Property Name="AppId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Gender" Type="varchar" MaxLength="45" />
           <Property Name="Age" Type="varchar" MaxLength="45" />
@@ -37,7 +38,7 @@
           <Property Name="ShortDesc" Type="varchar" MaxLength="255" />
           <Property Name="Desc" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="varchar" MaxLength="45" />
-          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
@@ -97,6 +98,27 @@
           <Property Name="ModifiedDate" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="package_item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_pid" Type="bigint" />
+          <Property Name="item_name" Type="varchar" MaxLength="255" />
+          <Property Name="item_sname" Type="varchar" MaxLength="255" />
+          <Property Name="item_unit" Type="varchar" MaxLength="255" />
+          <Property Name="item_bio_ref" Type="varchar" MaxLength="255" />
+          <Property Name="item_notes" Type="mediumtext" />
+          <Property Name="item_comments" Type="mediumtext" />
+          <Property Name="item_clinicaluse" Type="mediumtext" />
+          <Property Name="item_interpretation" Type="mediumtext" />
+          <Property Name="item_price" Type="double" />
+          <Property Name="item_created" Type="varchar" MaxLength="255" />
+          <Property Name="item_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="item_updated" Type="varchar" MaxLength="255" />
+          <Property Name="item_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="item_status" Type="varchar" MaxLength="45" />
+        </EntityType>
         <EntityType Name="PhysicianDetails">
           <Key>
             <PropertyRef Name="PhysicianId" />
@@ -137,6 +159,56 @@
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedDate" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="TempReports">
+          <Key>
+            <PropertyRef Name="repid" />
+          </Key>
+          <Property Name="repid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="labno" Type="bigint" />
+          <Property Name="age" Type="int" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="refby" Type="varchar" MaxLength="150" />
+          <Property Name="collected" Type="varchar" MaxLength="255" />
+          <Property Name="recieved" Type="varchar" MaxLength="255" />
+          <Property Name="reported" Type="varchar" MaxLength="255" />
+          <Property Name="amount" Type="float" />
+          <Property Name="cgst" Type="float" />
+          <Property Name="sgst" Type="float" />
+          <Property Name="discount" Type="float" />
+          <Property Name="finalamount" Type="float" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TempTests">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reportid" Type="bigint" />
+          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="value" Type="varchar" MaxLength="150" />
+          <Property Name="unit" Type="varchar" MaxLength="50" />
+          <Property Name="bioreference" Type="varchar" MaxLength="150" />
+          <Property Name="remarks" Type="varchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="test_package">
+          <Key>
+            <PropertyRef Name="test_package_id" />
+          </Key>
+          <Property Name="test_package_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="test_package_name" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_pno" Type="int" />
+          <Property Name="test_package_profile" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_habits" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_conditions" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_price" Type="double" />
+          <Property Name="test_package_dprice" Type="double" />
+          <Property Name="test_package_created" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_updated" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="test_package_status" Type="varchar" MaxLength="45" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -154,7 +226,7 @@
           <Property Name="ModifiedBy" Type="varchar" MaxLength="255" />
           <Property Name="ModifiedDate" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="longtext" />
-          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
           <Property Name="LastLogin" Type="datetime" Precision="0" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="EmailConfirmed" Type="bool" Nullable="false" />
@@ -251,6 +323,118 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKAddId">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCSpID">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCUserID">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEduId">
+          <End Role="EduDetails" Type="Self.EduDetails" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDetails">
+              <PropertyRef Name="EduDetailsId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="EduId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKExpId">
+          <End Role="ExpDeatils" Type="Self.ExpDeatils" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpDeatils">
+              <PropertyRef Name="ExpId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="ExpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPId">
+          <End Role="HealthParameters" Type="Self.HealthParameters" Multiplicity="0..1" />
+          <End Role="HealthReports" Type="Self.HealthReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthParameters">
+              <PropertyRef Name="HPId" />
+            </Principal>
+            <Dependent Role="HealthReports">
+              <PropertyRef Name="HPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSpID">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="SPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUserID">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PhysicianDetails" Type="Self.PhysicianDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicianDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="item_package_id">
+          <End Role="test_package" Type="Self.test_package" Multiplicity="0..1" />
+          <End Role="package_item" Type="Self.package_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="test_package">
+              <PropertyRef Name="test_package_id" />
+            </Principal>
+            <Dependent Role="package_item">
+              <PropertyRef Name="item_pid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetPackageId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
+          <Parameter Name="PackageName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetPackageNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021" />
         <Function Name="GetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
@@ -272,9 +456,13 @@
           <EntitySet Name="ExpDeatils" EntityType="Self.ExpDeatils" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="HealthParameters" EntityType="Self.HealthParameters" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="HealthReports" EntityType="Self.HealthReports" Schema="FlightMode2021" store:Type="Tables" />
+          <EntitySet Name="package_item" EntityType="Self.package_item" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="PhysicianDetails" EntityType="Self.PhysicianDetails" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="FlightMode2021" store:Type="Tables" />
+          <EntitySet Name="TempReports" EntityType="Self.TempReports" Schema="FlightMode2021" store:Type="Tables" />
+          <EntitySet Name="TempTests" EntityType="Self.TempTests" Schema="FlightMode2021" store:Type="Tables" />
+          <EntitySet Name="test_package" EntityType="Self.test_package" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="FlightMode2021" store:Type="Tables" />
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="FlightMode2021" store:Type="Tables" />
@@ -295,6 +483,42 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
+          <AssociationSet Name="FKAddId" Association="Self.FKAddId">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FKCSpID" Association="Self.FKCSpID">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKCUserID" Association="Self.FKCUserID">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKEduId" Association="Self.FKEduId">
+            <End Role="EduDetails" EntitySet="EduDetails" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKExpId" Association="Self.FKExpId">
+            <End Role="ExpDeatils" EntitySet="ExpDeatils" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKPId" Association="Self.FKPId">
+            <End Role="HealthParameters" EntitySet="HealthParameters" />
+            <End Role="HealthReports" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKSpID" Association="Self.FKSpID">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserID" Association="Self.FKUserID">
+            <End Role="User" EntitySet="User" />
+            <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="item_package_id" Association="Self.item_package_id">
+            <End Role="test_package" EntitySet="test_package" />
+            <End Role="package_item" EntitySet="package_item" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -310,17 +534,19 @@
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsPrimary" Type="Boolean" />
+          <Property Name="IsPrimary" Type="String" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="FMDataAccessModel.FKAddId" FromRole="Address" ToRole="User" />
         </EntityType>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="AppId" />
           </Key>
           <Property Name="AppId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Age" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -332,11 +558,14 @@
           <Property Name="ShortDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HealthReports" Relationship="FMDataAccessModel.FKAppId" FromRole="Appointment" ToRole="HealthReport" />
+          <NavigationProperty Name="Speciality1" Relationship="FMDataAccessModel.FKCSpID" FromRole="Appointment" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="FMDataAccessModel.FKCUserID" FromRole="Appointment" ToRole="User" />
         </EntityType>
         <EntityType Name="EduDetail">
           <Key>
@@ -351,6 +580,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKEduId" FromRole="EduDetail" ToRole="PhysicianDetail" />
         </EntityType>
         <EntityType Name="ExpDeatil">
           <Key>
@@ -366,6 +596,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKExpId" FromRole="ExpDeatil" ToRole="PhysicianDetail" />
         </EntityType>
         <EntityType Name="HealthParameter">
           <Key>
@@ -378,6 +609,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HealthReports" Relationship="FMDataAccessModel.FKPId" FromRole="HealthParameter" ToRole="HealthReport" />
         </EntityType>
         <EntityType Name="HealthReport">
           <Key>
@@ -391,6 +623,8 @@
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointment" Relationship="FMDataAccessModel.FKAppId" FromRole="HealthReport" ToRole="Appointment" />
+          <NavigationProperty Name="HealthParameter" Relationship="FMDataAccessModel.FKPId" FromRole="HealthReport" ToRole="HealthParameter" />
         </EntityType>
         <EntityType Name="PhysicianDetail">
           <Key>
@@ -410,6 +644,10 @@
           <Property Name="SPId" Type="Int64" />
           <Property Name="EduId" Type="Int64" />
           <Property Name="ExpId" Type="Int64" />
+          <NavigationProperty Name="EduDetail" Relationship="FMDataAccessModel.FKEduId" FromRole="PhysicianDetail" ToRole="EduDetail" />
+          <NavigationProperty Name="ExpDeatil" Relationship="FMDataAccessModel.FKExpId" FromRole="PhysicianDetail" ToRole="ExpDeatil" />
+          <NavigationProperty Name="Speciality" Relationship="FMDataAccessModel.FKSpID" FromRole="PhysicianDetail" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="FMDataAccessModel.FKUserID" FromRole="PhysicianDetail" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -432,6 +670,8 @@
           <Property Name="CreatedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKSpID" FromRole="Speciality" ToRole="PhysicianDetail" />
+          <NavigationProperty Name="Appointments" Relationship="FMDataAccessModel.FKCSpID" FromRole="Speciality" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -450,7 +690,6 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastLogin" Type="DateTime" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
@@ -466,6 +705,10 @@
           <NavigationProperty Name="UserClaims" Relationship="Self.FK_UserClaim_User_UserId" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogins" Relationship="Self.FK_UserLogin_User_UserId" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Address" Relationship="FMDataAccessModel.FKAddId" FromRole="User" ToRole="Address" />
+          <NavigationProperty Name="PhysicianDetails" Relationship="FMDataAccessModel.FKUserID" FromRole="User" ToRole="PhysicianDetail" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointments" Relationship="FMDataAccessModel.FKCUserID" FromRole="User" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -553,9 +796,250 @@
           </FunctionImport>
           <FunctionImport Name="SPNames" ReturnType="Collection(String)" />
           <FunctionImport Name="SpId" ReturnType="Collection(Int64)">
-            <Parameter Name="SpName" Mode="In" Type="String" />
+          <Parameter Name="SpName" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FKAddId" Association="FMDataAccessModel.FKAddId">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FKEduId" Association="FMDataAccessModel.FKEduId">
+            <End Role="EduDetail" EntitySet="EduDetails" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKExpId" Association="FMDataAccessModel.FKExpId">
+            <End Role="ExpDeatil" EntitySet="ExpDeatils" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKSpID" Association="FMDataAccessModel.FKSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserID" Association="FMDataAccessModel.FKUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKAppId" Association="FMDataAccessModel.FKAppId">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKPId" Association="FMDataAccessModel.FKPId">
+            <End Role="HealthParameter" EntitySet="HealthParameters" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKCSpID" Association="FMDataAccessModel.FKCSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKCUserID" Association="FMDataAccessModel.FKCUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <EntitySet Name="TempReports" EntityType="FMDataAccessModel.TempReport" />
+          <EntitySet Name="TempTests" EntityType="FMDataAccessModel.TempTest" />
+          <EntitySet Name="test_package" EntityType="FMDataAccessModel.test_package" />
+          <FunctionImport Name="PackageNames" ReturnType="Collection(String)" />
+          <EntitySet Name="package_item" EntityType="FMDataAccessModel.package_item" />
+          <AssociationSet Name="item_package_id" Association="FMDataAccessModel.item_package_id">
+            <End Role="test_package" EntitySet="test_package" />
+            <End Role="package_item" EntitySet="package_item" />
+          </AssociationSet>
+          <FunctionImport Name="PackageId" ReturnType="Collection(Int64)">
+            <Parameter Name="PackageName" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <Association Name="FKAddId">
+          <End Type="FMDataAccessModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEduId">
+          <End Type="FMDataAccessModel.EduDetail" Role="EduDetail" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDetail">
+              <PropertyRef Name="EduDetailsId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="EduId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKExpId">
+          <End Type="FMDataAccessModel.ExpDeatil" Role="ExpDeatil" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpDeatil">
+              <PropertyRef Name="ExpId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="ExpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSpID">
+          <End Type="FMDataAccessModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="SPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUserID">
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="1" />
+          <End Type="FMDataAccessModel.PhysicianDetail" Role="PhysicianDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhysicianDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAppId">
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="AppId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPId">
+          <End Type="FMDataAccessModel.HealthParameter" Role="HealthParameter" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthParameter">
+              <PropertyRef Name="HPId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="HPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCSpID">
+          <End Type="FMDataAccessModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SPId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="Speciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCUserID">
+          <End Type="FMDataAccessModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TempReport">
+          <Key>
+            <PropertyRef Name="repid" />
+          </Key>
+          <Property Name="repid" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="labno" Type="Int64" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="refby" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="collected" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="recieved" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="reported" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Single" />
+          <Property Name="sgst" Type="Single" />
+          <Property Name="cgst" Type="Single" />
+          <Property Name="discount" Type="Single" />
+          <Property Name="finalamount" Type="Single" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TempTest">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="Int64" Nullable="false" />
+          <Property Name="reportid" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bioreference" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="test_package">
+          <Key>
+            <PropertyRef Name="test_package_id" />
+          </Key>
+          <Property Name="test_package_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="test_package_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_pno" Type="Int32" />
+          <Property Name="test_package_profile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_habits" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_conditions" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_price" Type="Double" />
+          <Property Name="test_package_dprice" Type="Double" />
+          <Property Name="test_package_created" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_updated" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="test_package_status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="package_item" Relationship="FMDataAccessModel.item_package_id" FromRole="test_package" ToRole="package_item" />
+        </EntityType>
+        <EntityType Name="package_item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_pid" Type="Int64" />
+          <Property Name="item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_sname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_unit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_bio_ref" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_notes" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="item_comments" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="item_clinicaluse" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="item_interpretation" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="item_price" Type="Double" />
+          <Property Name="item_created" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_updated" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="test_package" Relationship="FMDataAccessModel.item_package_id" FromRole="package_item" ToRole="test_package" />
+        </EntityType>
+        <Association Name="item_package_id">
+          <End Type="FMDataAccessModel.test_package" Role="test_package" Multiplicity="0..1" />
+          <End Type="FMDataAccessModel.package_item" Role="package_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="test_package">
+              <PropertyRef Name="test_package_id" />
+            </Principal>
+            <Dependent Role="package_item">
+              <PropertyRef Name="item_pid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -582,6 +1066,8 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="FMDataAccessModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AppDate" ColumnName="AppDate" />
                 <ScalarProperty Name="AppId" ColumnName="AppId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -594,7 +1080,6 @@
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="Speciality" ColumnName="Speciality" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -706,6 +1191,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FMDataAccessModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
@@ -719,7 +1205,6 @@
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -766,7 +1251,84 @@
           <FunctionImportMapping FunctionImportName="UserId" FunctionName="FMDataAccessModel.Store.GetUserId" />
           <FunctionImportMapping FunctionImportName="SPNames" FunctionName="FMDataAccessModel.Store.GetSpecialities" />
           <FunctionImportMapping FunctionImportName="SpId" FunctionName="FMDataAccessModel.Store.GetSpId" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="TempReports">
+            <EntityTypeMapping TypeName="FMDataAccessModel.TempReport">
+              <MappingFragment StoreEntitySet="TempReports">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="finalamount" ColumnName="finalamount" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="cgst" ColumnName="cgst" />
+                <ScalarProperty Name="sgst" ColumnName="sgst" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="reported" ColumnName="reported" />
+                <ScalarProperty Name="recieved" ColumnName="recieved" />
+                <ScalarProperty Name="collected" ColumnName="collected" />
+                <ScalarProperty Name="refby" ColumnName="refby" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="labno" ColumnName="labno" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="repid" ColumnName="repid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempTests">
+            <EntityTypeMapping TypeName="FMDataAccessModel.TempTest">
+              <MappingFragment StoreEntitySet="TempTests">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="bioreference" ColumnName="bioreference" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="reportid" ColumnName="reportid" />
+                <ScalarProperty Name="testid" ColumnName="testid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="test_package">
+            <EntityTypeMapping TypeName="FMDataAccessModel.test_package">
+              <MappingFragment StoreEntitySet="test_package">
+                <ScalarProperty Name="test_package_status" ColumnName="test_package_status" />
+                <ScalarProperty Name="test_package_updated_by" ColumnName="test_package_updated_by" />
+                <ScalarProperty Name="test_package_updated" ColumnName="test_package_updated" />
+                <ScalarProperty Name="test_package_created_by" ColumnName="test_package_created_by" />
+                <ScalarProperty Name="test_package_created" ColumnName="test_package_created" />
+                <ScalarProperty Name="test_package_dprice" ColumnName="test_package_dprice" />
+                <ScalarProperty Name="test_package_price" ColumnName="test_package_price" />
+                <ScalarProperty Name="test_package_conditions" ColumnName="test_package_conditions" />
+                <ScalarProperty Name="test_package_habits" ColumnName="test_package_habits" />
+                <ScalarProperty Name="test_package_profile" ColumnName="test_package_profile" />
+                <ScalarProperty Name="test_package_pno" ColumnName="test_package_pno" />
+                <ScalarProperty Name="test_package_name" ColumnName="test_package_name" />
+                <ScalarProperty Name="test_package_id" ColumnName="test_package_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PackageNames" FunctionName="FMDataAccessModel.Store.GetPackageNames" />
+          <EntitySetMapping Name="package_item">
+            <EntityTypeMapping TypeName="FMDataAccessModel.package_item">
+              <MappingFragment StoreEntitySet="package_item">
+                <ScalarProperty Name="item_status" ColumnName="item_status" />
+                <ScalarProperty Name="item_updated_by" ColumnName="item_updated_by" />
+                <ScalarProperty Name="item_updated" ColumnName="item_updated" />
+                <ScalarProperty Name="item_created_by" ColumnName="item_created_by" />
+                <ScalarProperty Name="item_created" ColumnName="item_created" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
+                <ScalarProperty Name="item_interpretation" ColumnName="item_interpretation" />
+                <ScalarProperty Name="item_clinicaluse" ColumnName="item_clinicaluse" />
+                <ScalarProperty Name="item_comments" ColumnName="item_comments" />
+                <ScalarProperty Name="item_notes" ColumnName="item_notes" />
+                <ScalarProperty Name="item_bio_ref" ColumnName="item_bio_ref" />
+                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
+                <ScalarProperty Name="item_sname" ColumnName="item_sname" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_pid" ColumnName="item_pid" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PackageId" FunctionName="FMDataAccessModel.Store.GetPackageId" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

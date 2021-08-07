@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Add Package Items</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header"> Add Items </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="txtGender">Select Package</label>
+                            <select class="form-control" id="selected_package">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Test Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Short Name</label>
+                            <input type="text" class="form-control" id="sname" placeholder="Short Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Unit</label>
+                            <input type="text" class="form-control" id="unit" placeholder="Unit">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Bio-Refrence</label>
+                            <input type="text" class="form-control" id="bio_ref" placeholder="Bio-Reference">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Notes</label>
+                            <textarea class="form-control" rows="3" placeholder="notes" id="item_notes"  required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Comments</label>
+                            <textarea class="form-control" rows="3" id="comments" placeholder="Comments"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Clinical Use</label>
+                            <textarea class="form-control" rows="3" id="clinicaluse" placeholder="Clinical Use"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Interpretition</label>
+                            <textarea type="text" class="form-control" rows="3" id="interpretition" placeholder="Interpretition"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Price</label>
+                            <input type="text" class="form-control" id="price" placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtGender">Package Status</label>
+                            <select class="form-control" id="status">
+                                <option>Select</option>
+                                <option>Active</option>
+                                <option>Not Active</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="btnAddItem" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i>  Add Item </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/notify.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#linkClose').click(function () {
+            $('#divError').hide('fade');
+        });
+        /* Getting DropDownlist Populated */
+        $.ajax({
+            url: '/api/Packages',
+            method: 'Get',
+            dataType: 'json',
+            success: function (data) {
+
+                $.each(data, function (i, val) {
+                    $("#selected_package").append(new Option(val, val));
+                });
+            }
+        });
+
+        $('#selected_package').on('change', function () {
+            $.ajax({
+                url: '/api/PackageId/' + this.value +'/',
+                method: 'Get',
+                dataType: 'json',
+                success: function (data) {
+                    localStorage.removeItem("PackageId");
+                    localStorage.setItem("PackageId", data);
+                }
+            });
+        });
+
+        $("#btnAddItem").click(function () {
+
+            var t = new Date($.now());
+            timestamp = moment(t).format('llll');
+
+            var newitem = {};
+            newitem.item_pid = localStorage.getItem("PackageId");
+            newitem.item_name = $("#name").val();
+            newitem.item_sname = $("#sname").val();
+            newitem.item_unit = $("#unit").val();
+            newitem.item_bio_ref = $("#bio_ref").val();
+            newitem.item_notes = $("#item_notes").val();
+            newitem.item_comments = $("#comments").val();
+            newitem.item_clinicaluse = $("#clinicaluse").val();
+            newitem.item_interpretation = $("#interpretition").val();
+            newitem.item_price = $("#price").val();
+            newitem.item_created = timestamp;
+            newitem.item_created_by = localStorage.getItem("userName");
+            newitem.item_updated = timestamp;
+            newitem.item_updated_by = localStorage.getItem("userName");
+            newitem.item_status = $("#status").val();
+
+            $.ajax({
+                url: "/api/Item",
+                method: "post",
+                type: "Post",
+                contentType: "Application/json",
+                data: JSON.stringify(newitem),
+                dataType: "json",
+                success: function (response) {
+                    $.notify("Item Added", "success");
+                },
+                error: function (jqXHR) {
+                    $('#divErrorText').text(jqXHR.responseText);
+                    $('#divError').show('fade');
+                }
+            });
+        });
+    });
+</script>

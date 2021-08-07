@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h5 class="m-0"> Reports </h5>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">All Reports</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //JQuery Code to Get All Reports
+        $.ajax({
+            url: '/api/Report/',
+            method: 'Get',
+            dataType: 'json',
+            Accept: 'application/json',
+            success: function (data) {
+                $('#tblreports').removeAttr('width').dataTable({
+                    data: data,
+                    'scrollY': 350,
+                    'scrollX': 900,
+                    'word- wrap': 'break-word',
+                    columnDefs: [
+                        { width: 100, targets: 2 }
+                    ],
+                    'fixedColumns': 'true',
+                    columns: [
+
+                        { 'data': 'repid' },
+                        { 'data': 'name' },
+                        { 'data': 'labno' },
+                        { 'data': 'age' },
+                        { 'data': 'gender' },
+                        { 'data': 'refby' },
+                        { 'data': 'collected' },
+                        {
+                            'data': 'repid',
+                            'render': function (data) {
+                                return "<a class='btn btn-primary btn-sm mx-auto' onclick=Edit(" + data + ")>  Add Tests </a> <a class='btn btn-danger btn-sm' onclick=Delete(" + data + ")>  Print </a>"
+                            },
+                            'orderable': false,
+                            'width': '150px'
+                        },
+                    ],
+                    language: {
+                        "emptyTable": "No Data Avaliable"
+                    }
+                });
+            }
+        });
+    });
+    function Edit(repid) {
+        localStorage.removeItem("ReportId");
+        localStorage.setItem("ReportId", repid);
+        var url = '/Admin/Default/AddTempTests';
+        window.location.href = url;
+    }
+    function Delete(repid) {
+        localStorage.removeItem("ReportId");
+        localStorage.setItem("ReportId", repid);
+        var url = '/Admin/Default/ReportPrintPreview';
+        window.location.href = url;
+    }
+</script>
+
+@* Html Part *@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h7>All Reports</h7>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table  table-striped table-hover text-wrap" id="tblreports">
+                    <thead class="mx-auto">
+                        <tr>
+                            <th scope="col">Report Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Lab No</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Ref By</th>
+                            <th scope="col">Dated</th>
+                            <th scope="col">Controls</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">Report Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Lab No</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Ref By</th>
+                            <th scope="col">Dated</th>
+                            <th scope="col">Controls</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

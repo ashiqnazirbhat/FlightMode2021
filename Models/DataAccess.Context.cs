@@ -39,6 +39,10 @@ namespace FlightMode.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<TempReport> TempReports { get; set; }
+        public virtual DbSet<TempTest> TempTests { get; set; }
+        public virtual DbSet<test_package> test_package { get; set; }
+        public virtual DbSet<package_item> package_item { get; set; }
     
         public virtual ObjectResult<string> RoleName(string email)
         {
@@ -70,6 +74,20 @@ namespace FlightMode.Models
                 new ObjectParameter("SpName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("SpId", spNameParameter);
+        }
+    
+        public virtual ObjectResult<string> PackageNames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PackageNames");
+        }
+    
+        public virtual ObjectResult<Nullable<long>> PackageId(string packageName)
+        {
+            var packageNameParameter = packageName != null ?
+                new ObjectParameter("PackageName", packageName) :
+                new ObjectParameter("PackageName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("PackageId", packageNameParameter);
         }
     }
 }
