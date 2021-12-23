@@ -419,6 +419,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< HEAD
         <Association Name="item_package_id">
           <End Role="test_package" Type="Self.test_package" Multiplicity="0..1" />
           <End Role="package_item" Type="Self.package_item" Multiplicity="*" />
@@ -435,6 +436,8 @@
           <Parameter Name="PackageName" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetPackageNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021" />
+=======
+>>>>>>> a8ae304eb501c76c4f45b7053f3ae09a10c75bd7
         <Function Name="GetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FlightMode2021">
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
@@ -515,10 +518,13 @@
             <End Role="User" EntitySet="User" />
             <End Role="PhysicianDetails" EntitySet="PhysicianDetails" />
           </AssociationSet>
+<<<<<<< HEAD
           <AssociationSet Name="item_package_id" Association="Self.item_package_id">
             <End Role="test_package" EntitySet="test_package" />
             <End Role="package_item" EntitySet="package_item" />
           </AssociationSet>
+=======
+>>>>>>> a8ae304eb501c76c4f45b7053f3ae09a10c75bd7
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -797,6 +803,7 @@
           <FunctionImport Name="SPNames" ReturnType="Collection(String)" />
           <FunctionImport Name="SpId" ReturnType="Collection(Int64)">
           <Parameter Name="SpName" Mode="In" Type="String" />
+<<<<<<< HEAD
           </FunctionImport>
           <AssociationSet Name="FKAddId" Association="FMDataAccessModel.FKAddId">
             <End Role="Address" EntitySet="Addresses" />
@@ -845,7 +852,45 @@
           </AssociationSet>
           <FunctionImport Name="PackageId" ReturnType="Collection(Int64)">
             <Parameter Name="PackageName" Mode="In" Type="String" />
+=======
+>>>>>>> a8ae304eb501c76c4f45b7053f3ae09a10c75bd7
           </FunctionImport>
+          <AssociationSet Name="FKAddId" Association="FMDataAccessModel.FKAddId">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FKEduId" Association="FMDataAccessModel.FKEduId">
+            <End Role="EduDetail" EntitySet="EduDetails" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKExpId" Association="FMDataAccessModel.FKExpId">
+            <End Role="ExpDeatil" EntitySet="ExpDeatils" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKSpID" Association="FMDataAccessModel.FKSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKUserID" Association="FMDataAccessModel.FKUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PhysicianDetail" EntitySet="PhysicianDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FKAppId" Association="FMDataAccessModel.FKAppId">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKPId" Association="FMDataAccessModel.FKPId">
+            <End Role="HealthParameter" EntitySet="HealthParameters" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FKCSpID" Association="FMDataAccessModel.FKCSpID">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FKCUserID" Association="FMDataAccessModel.FKCUserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FKAddId">
           <End Type="FMDataAccessModel.Address" Role="Address" Multiplicity="0..1" />
@@ -955,6 +1000,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< HEAD
         <EntityType Name="TempReport">
           <Key>
             <PropertyRef Name="repid" />
@@ -1040,6 +1086,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+=======
+>>>>>>> a8ae304eb501c76c4f45b7053f3ae09a10c75bd7
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
